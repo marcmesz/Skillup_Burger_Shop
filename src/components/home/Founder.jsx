@@ -1,6 +1,8 @@
+import "../../styles/founder.scss";
 import React from "react";
 import { motion } from "framer-motion";
 import me from "../../assets/skj.jpg";
+
 const Founder = () => {
   const options = {
     initial: {

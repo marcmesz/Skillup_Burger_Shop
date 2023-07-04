@@ -1,3 +1,4 @@
+import "../../styles/cart.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import burger1 from "../../assets/burger1.png";

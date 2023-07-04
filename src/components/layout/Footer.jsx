@@ -1,1 +1,9 @@
-// Write all the code here
+import "../../styles/footer.scss";
+
+const Footer = () => {
+    return (
+        <div>Footer</div>
+    )
+}
+
+export default Footer

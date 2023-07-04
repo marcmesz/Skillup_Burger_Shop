@@ -1,1 +1,9 @@
-// Write all the code here
+import "../../styles/login.scss";
+
+const Login = () => {
+    return (
+        <div>Login</div>
+    )
+}
+
+export default Login

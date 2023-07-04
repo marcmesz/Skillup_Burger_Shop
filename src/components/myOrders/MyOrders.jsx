@@ -1,3 +1,4 @@
+import "../../styles/table.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
@@ -21,7 +22,7 @@ const MyOrders = () => {
           </thead>
 
           <tbody>
-//     Add the code for the table body
+{/* //     Add the code for the table body */}
            
           </tbody>
         </table>

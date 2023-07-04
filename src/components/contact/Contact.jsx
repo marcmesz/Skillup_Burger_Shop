@@ -1,1 +1,9 @@
-// Write all the code here
+import "../../styles/contact.scss";
+
+const Contact = () => {
+    return (
+        <div>Contact</div>
+    )
+}
+
+export default Contact
