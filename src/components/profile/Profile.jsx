@@ -16,6 +16,7 @@ const Profile = () => {
       opacity: 1,
     },
   };
+
   return (
     <section className="profile">
       <main>
