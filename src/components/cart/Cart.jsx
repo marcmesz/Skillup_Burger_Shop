@@ -23,7 +23,7 @@ const CartItem = ({ value, title, img, increment, decrement }) => (
 const Cart = () => {
   const increment = (item) => {};
 
-  const decrement = (item) => {};
+  //const decrement = (item) => {};
 
   return (
     <section className="cart">

@@ -1,6 +1,6 @@
 import "../../styles/shipping.scss";
 import React from "react";
-import { Country, State } from "country-state-city";
+//import { Country, State } from "country-state-city";
 import Popup from 'reactjs-popup';
 
 const Shipping = () => {
