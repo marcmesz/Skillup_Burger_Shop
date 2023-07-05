@@ -26,7 +26,7 @@ function DropdownMenu() {
               data-bs-display="static"
               aria-expanded="false"
             >
-              Menu
+              MY ACCOUNT
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
               {navLinks.map((d, i) => (

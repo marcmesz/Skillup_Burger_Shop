@@ -26,7 +26,7 @@ const Contact = () => {
                     <textarea placeholder="Message..." cols="30" rows="10"></textarea>
                     <Popup trigger={<button type="button">Send</button>}>
                         <div style={{
-                            color: "red",
+                            color: "green",
                             transform: 'translate(25%,-700%)',
                             backgroundColor: '#fff',
                             padding: '10px',
@@ -34,7 +34,7 @@ const Contact = () => {
                             boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)'
                         }}
                         >
-                            Thank you for cotacting us! We will get back to you shortly.
+                            Thank you for contacting us! We will get back to you shortly.
                         </div>
                     </Popup>
                 </motion.form>
