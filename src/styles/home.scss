@@ -3,21 +3,26 @@
 .home {
   height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  color: white;
 
   div {
     padding-left: 8rem;
-    padding-top: 15rem;
-    > h1 {
+
+    >h1 {
       font-size: 4rem;
       text-transform: uppercase;
     }
 
-    > p {
+    >p {
       font-size: 1.2rem;
     }
   }
 
-  > a {
+  >a {
     display: block;
     margin: 2rem 8rem;
     width: 10rem;
@@ -29,6 +34,7 @@
     border-radius: 10px;
     padding: 1rem;
     cursor: pointer;
+
     &:hover {
       background-color: $reddark;
     }
@@ -49,13 +55,13 @@
 
 @media screen and (max-width: 600px) {
   .home {
-    > div {
+    >div {
       text-align: center;
       padding-top: 10rem;
       padding-left: 0rem;
     }
 
-    > a {
+    >a {
       margin: 2rem auto;
     }
   }
