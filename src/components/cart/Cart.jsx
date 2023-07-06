@@ -22,6 +22,7 @@ const CartItem = ({ value, title, img, increment, decrement }) => (
 const Cart = () => {
   const increment = (item) => { };
   const decrement = (item) => { };
+
   return (
     <section className="cart">
       <h1 className="page-title">Cart</h1>
@@ -47,6 +48,7 @@ const Cart = () => {
           increment={() => increment(3)}
           decrement={() => decrement(3)}
         />
+
         <article>
           <div>
             <h4>Sub Total</h4>
@@ -60,10 +62,12 @@ const Cart = () => {
             <h4>Shipping Charges</h4>
             <p>₹{200}</p>
           </div>{" "}
+          <hr />
           <div>
             <h4>Total</h4>
-            <p>₹{2000 + 2000 * 0.18 + 200}</p>
+            <p className="total-amount">₹{2000 + 2000 * 0.18 + 200}</p>
           </div>
+          <hr />
           <Link to="/shipping">Checkout</Link>
         </article>
       </main>

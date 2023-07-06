@@ -8,8 +8,8 @@ const Shipping = () => {
 
   return (
     <section className="shipping">
+      <h1 className="page-title">Shipping Details</h1>
       <main>
-        <h1>Shipping Details</h1>
         <form>
           <div>
             <label>H.No.</label>

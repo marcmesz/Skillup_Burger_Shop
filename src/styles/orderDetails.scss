@@ -4,48 +4,51 @@
   background-color: $pink;
   width: 100%;
 
-  > main {
-    background-color:$white;
+  >main {
+    background-color: $white;
     max-width: 900px;
     margin: auto;
     padding: 2rem;
     overflow-x: auto;
-    > h1 {
+
+    >h1 {
       text-transform: uppercase;
       text-align: center;
       font: 100 3rem "Roboto";
       margin: 3rem;
     }
 
-    > div {
+    >div {
       margin: 2rem 0;
       text-align: center;
-      > h1 {
+
+      >h1 {
         font-size: 1.8rem;
         text-transform: uppercase;
         letter-spacing: 5px;
       }
 
-      > p {
+      >p {
         font-weight: 200;
         white-space: nowrap;
         letter-spacing: 2px;
         margin: 2rem;
-        > b {
+
+        >b {
           margin-right: 5px;
         }
       }
     }
 
-    > article {
-      > h1 {
+    >article {
+      >h1 {
         font-size: 1.8rem;
         text-transform: uppercase;
         letter-spacing: 5px;
         margin: 2rem 0;
       }
 
-      > div {
+      >div {
         background-color: rgb(246, 246, 246);
         margin: 1rem;
         display: flex;
@@ -53,9 +56,11 @@
         justify-content: space-between;
         padding: 1rem;
         border-radius: 5px;
-        > h4 {
+
+        >h4 {
           font-weight: 200;
           letter-spacing: 2px;
+          margin-bottom: 0;
         }
       }
     }
@@ -63,11 +68,12 @@
 }
 
 @media screen and (max-width: 600px) {
-  .orderDetails > main > div {
-    > h1 {
+  .orderDetails>main>div {
+    >h1 {
       font-size: 1.4rem;
     }
-    > p {
+
+    >p {
       letter-spacing: 1px;
       font-size: 0.9rem;
       margin: 2rem 0;
