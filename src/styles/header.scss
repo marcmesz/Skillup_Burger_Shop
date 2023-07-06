@@ -1,12 +1,12 @@
 @import "colors";
 
 nav {
+  position: relative;
   height: 5rem;
   padding: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  //box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
   background-color: $white;
 
   >div {
@@ -42,6 +42,16 @@ nav {
       }
     }
   }
+
+  .mobile-icon {
+    position: absolute;
+    display: none;
+    right: 1.6rem;
+    top: 1.6rem;
+    font-size: 2em;
+    color: $red;
+    cursor: pointer;
+  }
 }
 
 #logo-with-text {
@@ -69,6 +79,7 @@ nav {
 
   .logo-text {
     margin-bottom: .2em;
+
     span {
       line-height: .92em;
 
@@ -82,10 +93,50 @@ nav {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 854px) {
   nav {
+    height: auto;
+    flex-direction: column;
     padding: 1rem;
 
+    #logo-with-text {
+      margin-right: 0;
+    }
+
+    .menu-items {
+      width: 100%;
+      display: none;
+      flex-direction: column;
+
+      a {
+        padding: 1.5em 0;
+        width: 100%;
+        justify-content: center;
+      }
+
+      a+a {
+        border-top: 1px solid rgba(0, 0, 0, .2);
+      }
+    }
+
+    .mobile-icon {
+      display: block;
+    }
+  }
+
+  .open {
+    .menu-items {
+      display: flex;
+    }
+
+    .mobile-icon {
+      color: $reddark;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  nav {
     >div>a {
       margin: 0 0.5rem;
     }

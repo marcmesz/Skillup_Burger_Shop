@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 
 
-const DropdownMenu = () => {
+const DropdownMenu = (props) => {
   const [navLinks, setNavLinks] = useState([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const DropdownMenu = () => {
             <ul className="dropdown-menu dropdown-menu-end">
               {navLinks.map((d, i) => (
                 <li key={i}>
-                  <Link to={d.path}>
+                  <Link to={d.path} onClick={props.handleNavOpen}>
                     <button className="dropdown-item" type="button">
                       {d.name}
                     </button>
