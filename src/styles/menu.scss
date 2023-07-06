@@ -7,23 +7,25 @@
   width: 100%;
   min-height: 100vh;
   background-color: $white;
-  padding: 4rem;
 
   >h1 {
     font-size: 2rem;
     text-align: center;
     padding: 2rem;
   }
+}
 
-  >div {
-    display: flex;
-    justify-content: space-evenly;
-  }
+.menu-grid {
+  padding: 2em 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-column-gap: 3em;
+  grid-row-gap: 3em;
 }
 
 .menuCard {
   background-color: $white;
-  width: 30%;
+  width: 100%;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.495);
 
@@ -83,5 +85,9 @@
   .menuCard {
     width: 100%;
     margin: 1rem 0;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }

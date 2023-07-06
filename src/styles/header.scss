@@ -6,7 +6,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
+  //box-shadow: 0 0 10px rgba(0, 0, 0, 0.229);
   background-color: $white;
 
   >div {
@@ -46,11 +46,12 @@ nav {
 
 #logo-with-text {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   text-transform: uppercase;
   color: $red;
   font-weight: bold;
   font-size: 1.4em;
+  margin-left: 0;
 
   >svg {
     color: $red;

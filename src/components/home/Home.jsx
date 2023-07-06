@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
         <>
-            <section className="home">
+            <section className="home container-xxl">
                 <div>
                     <motion.h1 {...options}>Burger Shop</motion.h1>
                     <motion.p

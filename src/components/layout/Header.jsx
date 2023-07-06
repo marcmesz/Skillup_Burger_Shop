@@ -8,7 +8,7 @@ import DropdownMenu from './DropdownMenu';
 
 const Header = ({ isAuthenticated = false }) => {
     return (
-        <nav>
+        <nav className="container-xxl">
             <motion.div initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
                 <Link to="/" id="logo-with-text">
                     <IoFastFoodOutline />
