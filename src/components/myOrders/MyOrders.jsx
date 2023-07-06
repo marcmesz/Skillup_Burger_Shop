@@ -8,6 +8,7 @@ const MyOrders = () => {
 
   return (
     <section className="tableClass">
+      <h1 className="page-title">My Orders</h1>
       <main>
         <table>
           <thead>

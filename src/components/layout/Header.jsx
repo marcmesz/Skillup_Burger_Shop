@@ -10,7 +10,13 @@ const Header = ({ isAuthenticated = false }) => {
     return (
         <nav>
             <motion.div initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
-                <Link to="/" className="m-0"><IoFastFoodOutline className="fs-1" /></Link>
+                <Link to="/" id="logo-with-text">
+                    <IoFastFoodOutline />
+                    <div className="logo-text">
+                        <span>Burger</span>
+                        <span>Shop</span>
+                    </div>
+                </Link>
             </motion.div>
             <div>
                 <Link to="/">Home</Link>

@@ -5,8 +5,8 @@ const OrderDetails = () => {
 
     return (
         <section className="orderDetails">
+            <h1 className="page-title">Order Details</h1>
             <main>
-                <h1>Order Details</h1>
                 <div>
                     <h1>Shipping</h1>
                     <p>

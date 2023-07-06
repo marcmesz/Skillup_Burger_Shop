@@ -1,5 +1,4 @@
 import "../../styles/contact.scss";
-
 import React from "react";
 import { motion } from "framer-motion";
 import burger from "../../assets/burger2.png";
@@ -8,6 +7,7 @@ import Popup from 'reactjs-popup';
 const Contact = () => {
     return (
         <>
+            <h1 className="page-title">Contact</h1>
             <section className="contact">
                 <motion.form
                     initial={{

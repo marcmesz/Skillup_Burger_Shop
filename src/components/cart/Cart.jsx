@@ -24,6 +24,7 @@ const Cart = () => {
   const decrement = (item) => { };
   return (
     <section className="cart">
+      <h1 className="page-title">Cart</h1>
       <main>
         <CartItem
           title={"Cheese Burger"}

@@ -1,9 +1,12 @@
 @import "colors";
 
 #menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   min-height: 100vh;
-  background-color:$white;
+  background-color: $white;
   padding: 4rem;
 
   >h1 {
@@ -19,7 +22,7 @@
 }
 
 .menuCard {
-  background-color:$white;
+  background-color: $white;
   width: 30%;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.495);
@@ -30,7 +33,7 @@
     display: flex;
     align-items: center;
     padding: 2rem;
-    color:$white;
+    color: $white;
     height: 4rem;
   }
 
@@ -58,7 +61,7 @@
 
     >button {
       background-color: $red;
-      color:$white;
+      color: $white;
       border: none;
       padding: 1rem 2rem;
       width: 100%;
@@ -72,7 +75,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   #menu>div {
     flex-direction: column;
   }
