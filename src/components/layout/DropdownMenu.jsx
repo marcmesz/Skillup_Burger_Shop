@@ -1,7 +1,10 @@
+import "../../styles/DropdownMenu.scss";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
-function DropdownMenu() {
+
+const DropdownMenu = () => {
   const [navLinks, setNavLinks] = useState([]);
 
   useEffect(() => {
@@ -16,17 +19,19 @@ function DropdownMenu() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg shadow-none">
         <div className="container">
           <div className="btn-group">
             <button
+              id="dropdown-toggle"
               type="button"
-              className="btn btn-primary dropdown-toggle"
+              className="btn btn-lg dropdown-toggle d-flex align-items-center g-20"
               data-bs-toggle="dropdown"
               data-bs-display="static"
               aria-expanded="false"
             >
-              MY ACCOUNT
+              <FaUser />
+              <span className="ms-1">My Account</span>
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
               {navLinks.map((d, i) => (

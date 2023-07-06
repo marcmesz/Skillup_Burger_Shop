@@ -6,7 +6,7 @@ footer {
   padding: 4rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  color: white;
+  color:$white;
   align-items: center;
 
   h2 {
@@ -34,7 +34,7 @@ footer {
     a {
       margin: 0.5rem;
       font-size: 2rem;
-      color: white;
+      color:$white;
       &:hover {
         color: $red;
       }

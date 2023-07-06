@@ -3,61 +3,62 @@
 #menu {
   width: 100%;
   min-height: 100vh;
-  background-color: white;
+  background-color:$white;
   padding: 4rem;
 
-  > h1 {
+  >h1 {
     font-size: 2rem;
     text-align: center;
     padding: 2rem;
   }
 
-  > div {
+  >div {
     display: flex;
     justify-content: space-evenly;
   }
 }
 
 .menuCard {
-  background-color: white;
+  background-color:$white;
   width: 30%;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.495);
 
-  > div {
+  >div {
     border-radius: 20px 20px 0 0;
     background-color: $red;
     display: flex;
     align-items: center;
     padding: 2rem;
-    color: white;
+    color:$white;
     height: 4rem;
   }
 
-  > main {
+  >main {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    > img {
+    >img {
       height: 15rem;
       width: 100%;
       object-fit: contain;
     }
 
-    > h5 {
+    >h5 {
       font-size: 1.8rem;
     }
-    > p {
+
+    >p {
       text-transform: uppercase;
       letter-spacing: 2px;
       padding: 1rem 0;
     }
 
-    > button {
+    >button {
       background-color: $red;
-      color: white;
+      color:$white;
       border: none;
       padding: 1rem 2rem;
       width: 100%;
@@ -72,7 +73,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  #menu > div {
+  #menu>div {
     flex-direction: column;
   }
 
@@ -81,4 +82,3 @@
     margin: 1rem 0;
   }
 }
-

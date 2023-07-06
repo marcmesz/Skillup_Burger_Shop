@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
 
-  color: white;
+  color:$white;
 
   div {
     padding-left: 8rem;
@@ -27,7 +27,7 @@
     margin: 2rem 8rem;
     width: 10rem;
     background-color: $red;
-    color: white;
+    color:$white;
     text-align: center;
     border: none;
     font-size: 1rem;
@@ -47,6 +47,9 @@
     background-image: url("../assets/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: bottom;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
     position: absolute;
     left: 0%;
     z-index: -1;

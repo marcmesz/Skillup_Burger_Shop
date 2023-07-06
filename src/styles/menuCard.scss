@@ -1,0 +1,11 @@
+@import "colors";
+
+.added-to-cart {
+    color: $white;
+    transform: translate(0%, -500%);
+    background-color: $red;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 3px solid $white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
