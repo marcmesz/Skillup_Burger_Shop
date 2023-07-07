@@ -20,7 +20,7 @@ const DropdownMenu = (props) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow-none">
-        <div className="container">
+        <div className="container" style={{paddingRight: 0, marginLeft: "1em"}}>
           <div className="btn-group">
             <button
               id="dropdown-toggle"

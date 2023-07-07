@@ -10,13 +10,18 @@ import { useState } from "react";
 
 const Header = ({ isAuthenticated = false }) => {
     const menuRef = useRef()
-    const [active, setActive] = useState("")
+    const [active, setActive] = useState("home")
 
     const handleNavOpen = (e) => {
-        window.innerWidth <= 854 && menuRef.current.classList.toggle("open")
-        setActive(e.target.id)
+        window.innerWidth <= 864 && menuRef.current.classList.toggle("open")
+        if (e.target.id) {
+            setActive(e.target.id)
+            scrollToTop()
+        }
+    }
 
-        console.log(e.target.id)
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
 
     return (

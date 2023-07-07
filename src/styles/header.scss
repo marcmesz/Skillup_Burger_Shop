@@ -52,6 +52,21 @@ nav {
     color: $red;
     cursor: pointer;
   }
+
+  a.active {
+    position: relative;
+    color: $red;
+
+    &:not(a[href="/cart"])::after {
+      content: "";
+      position: absolute;
+      top: 110%;
+      left: 10px;
+      right: 10px;
+      border-bottom: 1px solid $red;
+    }
+
+  }
 }
 
 #logo-with-text {
@@ -93,23 +108,8 @@ nav {
   }
 }
 
-a.active {
-  position: relative;
-  color: $red;
 
-  &:not(a[href="/cart"])::after {
-    content: "";
-    position: absolute;
-    top: 110%;
-    left: 10px;
-    right: 10px;
-    border-bottom: 1px solid $red;
-  }
-
-}
-
-
-@media screen and (max-width: 854px) {
+@media screen and (max-width: 864px) {
   nav {
     height: auto;
     flex-direction: column;
@@ -148,6 +148,10 @@ a.active {
     .mobile-icon {
       color: $reddark;
     }
+  }
+
+  a.active::after {
+    display: none;
   }
 }
 
