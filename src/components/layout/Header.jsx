@@ -46,20 +46,20 @@ const Header = ({ isAuthenticated = false }) => {
                         Home
                     </Link>
                     <Link
-                        id="contact"
-                        className={active === "contact" ? "active" : ""}
-                        to="/contact"
-                        onClick={(e) => handleNavOpen(e)}
-                    >
-                        Contact
-                    </Link>
-                    <Link
                         id="about"
                         className={active === "about" ? "active" : ""}
                         to="/about"
                         onClick={(e) => handleNavOpen(e)}
                     >
                         About
+                    </Link>
+                    <Link
+                        id="contact"
+                        className={active === "contact" ? "active" : ""}
+                        to="/contact"
+                        onClick={(e) => handleNavOpen(e)}
+                    >
+                        Contact
                     </Link>
                     <Link
                         to="/cart"
