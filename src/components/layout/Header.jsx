@@ -6,12 +6,17 @@ import { FiShoppingCart, FiLogIn } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DropdownMenu from './DropdownMenu';
+import { useState } from "react";
 
 const Header = ({ isAuthenticated = false }) => {
     const menuRef = useRef()
+    const [active, setActive] = useState("")
 
-    const handleNavOpen = () => {
-        menuRef.current.classList.toggle("open")
+    const handleNavOpen = (e) => {
+        window.innerWidth <= 854 && menuRef.current.classList.toggle("open")
+        setActive(e.target.id)
+
+        console.log(e.target.id)
     }
 
     return (
@@ -27,11 +32,36 @@ const Header = ({ isAuthenticated = false }) => {
             </motion.div>
             <FaHamburger className="mobile-icon" onClick={handleNavOpen} />
             <div className="menu-items">
-                <Link to="/" onClick={handleNavOpen}>Home</Link>
-                <Link to="/contact" onClick={handleNavOpen}>Contact</Link>
-                <Link to="/about" onClick={handleNavOpen}>About</Link>
-                <Link to="/cart" onClick={handleNavOpen}>
-                    <FiShoppingCart />
+                <Link
+                    id="home"
+                    className={active === "home" ? "active" : ""}
+                    to="/"
+                    onClick={(e) => handleNavOpen(e)}
+                >
+                    Home
+                </Link>
+                <Link
+                    id="contact"
+                    className={active === "contact" ? "active" : ""}
+                    to="/contact"
+                    onClick={(e) => handleNavOpen(e)}
+                >
+                    Contact
+                </Link>
+                <Link
+                    id="about"
+                    className={active === "about" ? "active" : ""}
+                    to="/about"
+                    onClick={(e) => handleNavOpen(e)}
+                >
+                    About
+                </Link>
+                <Link
+                    to="/cart"
+                    className={active === "cart" ? "active" : ""}
+                    onClick={(e) => handleNavOpen(e)}
+                >
+                    <FiShoppingCart id="cart" />
                 </Link>
                 <DropdownMenu handleNavOpen={handleNavOpen} />
             </div>
