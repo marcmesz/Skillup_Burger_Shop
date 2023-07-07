@@ -2,11 +2,12 @@ import "../../styles/header.scss";
 import React, { useRef } from "react";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { FiShoppingCart, FiLogIn } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DropdownMenu from './DropdownMenu';
 import { useState } from "react";
+import CartMenuItem from "./CartMenuItem";
 
 const Header = ({ isAuthenticated = false }) => {
     const menuRef = useRef()
@@ -14,10 +15,8 @@ const Header = ({ isAuthenticated = false }) => {
 
     const handleNavOpen = (e) => {
         window.innerWidth <= 864 && menuRef.current.classList.toggle("open")
-        if (e.target.id) {
-            setActive(e.target.id)
-            scrollToTop()
-        }
+        e.target.id && setActive(e.target.id)
+        scrollToTop()
     }
 
     const scrollToTop = () => {
@@ -67,7 +66,7 @@ const Header = ({ isAuthenticated = false }) => {
                         className={active === "cart" ? "active" : ""}
                         onClick={(e) => handleNavOpen(e)}
                     >
-                        <FiShoppingCart id="cart" />
+                        <CartMenuItem />
                     </Link>
                     <DropdownMenu handleNavOpen={handleNavOpen} />
                 </div>

@@ -13,11 +13,6 @@ nav {
     display: flex;
     align-items: center;
 
-    >svg {
-      color: $red;
-      font-size: 3rem;
-    }
-
     >a {
       margin: 0 2rem;
       color: $dark;
@@ -29,16 +24,6 @@ nav {
 
       &:hover {
         color: $lightdark;
-      }
-
-      >svg {
-        color: $red;
-        transition: inherit;
-        font-size: 2rem;
-
-        &:hover {
-          color: $lightdark;
-        }
       }
     }
   }
