@@ -20,52 +20,54 @@ const Header = ({ isAuthenticated = false }) => {
     }
 
     return (
-        <nav className="container-xxl" ref={menuRef}>
-            <motion.div initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
-                <Link to="/" id="logo-with-text">
-                    <IoFastFoodOutline />
-                    <div className="logo-text">
-                        <span>Burger</span>
-                        <span>Shop</span>
-                    </div>
-                </Link>
-            </motion.div>
-            <FaHamburger className="mobile-icon" onClick={handleNavOpen} />
-            <div className="menu-items">
-                <Link
-                    id="home"
-                    className={active === "home" ? "active" : ""}
-                    to="/"
-                    onClick={(e) => handleNavOpen(e)}
-                >
-                    Home
-                </Link>
-                <Link
-                    id="contact"
-                    className={active === "contact" ? "active" : ""}
-                    to="/contact"
-                    onClick={(e) => handleNavOpen(e)}
-                >
-                    Contact
-                </Link>
-                <Link
-                    id="about"
-                    className={active === "about" ? "active" : ""}
-                    to="/about"
-                    onClick={(e) => handleNavOpen(e)}
-                >
-                    About
-                </Link>
-                <Link
-                    to="/cart"
-                    className={active === "cart" ? "active" : ""}
-                    onClick={(e) => handleNavOpen(e)}
-                >
-                    <FiShoppingCart id="cart" />
-                </Link>
-                <DropdownMenu handleNavOpen={handleNavOpen} />
-            </div>
-        </nav>
+        <div className="sticky-top bg-white shadow">
+            <nav className="container-xxl" ref={menuRef}>
+                <motion.div initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
+                    <Link to="/" id="logo-with-text">
+                        <IoFastFoodOutline />
+                        <div className="logo-text">
+                            <span>Burger</span>
+                            <span>Shop</span>
+                        </div>
+                    </Link>
+                </motion.div>
+                <FaHamburger className="mobile-icon" onClick={handleNavOpen} />
+                <div className="menu-items">
+                    <Link
+                        id="home"
+                        className={active === "home" ? "active" : ""}
+                        to="/"
+                        onClick={(e) => handleNavOpen(e)}
+                    >
+                        Home
+                    </Link>
+                    <Link
+                        id="contact"
+                        className={active === "contact" ? "active" : ""}
+                        to="/contact"
+                        onClick={(e) => handleNavOpen(e)}
+                    >
+                        Contact
+                    </Link>
+                    <Link
+                        id="about"
+                        className={active === "about" ? "active" : ""}
+                        to="/about"
+                        onClick={(e) => handleNavOpen(e)}
+                    >
+                        About
+                    </Link>
+                    <Link
+                        to="/cart"
+                        className={active === "cart" ? "active" : ""}
+                        onClick={(e) => handleNavOpen(e)}
+                    >
+                        <FiShoppingCart id="cart" />
+                    </Link>
+                    <DropdownMenu handleNavOpen={handleNavOpen} />
+                </div>
+            </nav>
+        </div>
     )
 }
 
