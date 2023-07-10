@@ -7,7 +7,8 @@ const cartSlice = createSlice({
         tax: 18,
         shipping: 200,
         totalItems: 0,
-        totalTax: 0,
+        taxTotal: 0,
+        subTotal: 0,
         totalAmount: 0
     },
 
@@ -19,20 +20,23 @@ const cartSlice = createSlice({
                 const itemIndex = state.items.findIndex(x => x.id === action.payload.id)
                 const item = state.items[itemIndex]
                 const updatedItem = { ...item, amount: item.amount + 1 }
-                const totalAmount = state.totalAmount + item.price
+                const subTotal = state.subTotal + item.price
 
                 let updatedItemsArray = [...state.items]
                 updatedItemsArray[itemIndex] = updatedItem
 
                 state.items = updatedItemsArray
-                state.totalAmount = totalAmount
+                state.subTotal = subTotal
             }
             else {
+                action.payload = { ...action.payload, amount: 1 }
                 state.items = [...state.items, action.payload]
-                state.totalAmount = state.totalAmount + action.payload.price * action.payload.amount
+                state.subTotal = state.subTotal + action.payload.price * action.payload.amount
             }
 
             state.totalItems = state.totalItems + 1
+            state.taxTotal = (state.subTotal / 100) * state.tax
+            state.totalAmount = state.subTotal + state.taxTotal + state.shipping
 
             console.log(Object.assign({}, state))
         },
@@ -40,7 +44,7 @@ const cartSlice = createSlice({
         removeOneItemFromCart(state, action) {
             const existingCartItemIndex = state.items.findIndex(item => item.id === action.payload.id)
             const existingItem = state.items[existingCartItemIndex]
-            const updatedTotalAmount = state.totalAmount - existingItem.price
+            const updatedsubTotal = state.subTotal - existingItem.price
 
             let updatedItems
             if (existingItem.amount === 1) {
@@ -51,9 +55,20 @@ const cartSlice = createSlice({
                 updatedItems[existingCartItemIndex] = updatedItem
             }
 
+            state.taxTotal = state.taxTotal - ((existingItem.price / 100) * state.tax)
             state.items = updatedItems
-            state.totalAmount = updatedTotalAmount
             state.totalItems = state.totalItems - 1
+            state.subTotal = updatedsubTotal
+
+            if (state.subTotal === 0) {
+                state.totalAmount = 0
+            }
+            else {
+                state.totalAmount = state.subTotal + state.taxTotal + state.shipping
+            }
+
+            console.log(Object.assign({}, state))
+
         }
     }
 })

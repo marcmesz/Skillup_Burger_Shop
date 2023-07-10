@@ -12,9 +12,7 @@ const MenuCard = (props) => {
   const dispatch = useDispatch()
 
   const addToCartHandler = (item) => {
-    const { id, title, price } = item
-    const amount = 1
-    dispatch(cartActions.addItemToCart({ id, title, price, amount }))
+    dispatch(cartActions.addItemToCart(item))
     closePopup()
   }
 
