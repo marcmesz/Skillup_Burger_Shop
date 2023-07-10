@@ -5,6 +5,7 @@ const cartSlice = createSlice({
     initialState: {
         items: [],
         tax: 18,
+        shipping: 200,
         totalItems: 0,
         totalTax: 0,
         totalAmount: 0

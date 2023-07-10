@@ -1,5 +1,5 @@
 import "../../styles/menuCard.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Popup from 'reactjs-popup';
 import { useRef } from "react";
@@ -19,8 +19,9 @@ const MenuCard = (props) => {
   }
 
   const closePopup = () => {
-    setTimeout(() => popupRef.current.close(), 2500)
+    setTimeout(() => popupRef.current?.close(), 2500)
   }
+
 
   return (
     <motion.div

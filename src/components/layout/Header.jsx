@@ -12,8 +12,8 @@ import CartMenuItem from "./CartMenuItem";
 const Header = ({ isAuthenticated = false }) => {
     const menuRef = useRef()
     const location = useLocation()
-    const currentPage = location.pathname.slice(1)
-    const [active, setActive] = useState(currentPage === "" ? "home" : currentPage)
+    const currentPage = location.pathname.slice(1) === "" ? "home" : location.pathname.slice(1)
+    const [active, setActive] = useState(currentPage)
 
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
