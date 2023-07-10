@@ -14,7 +14,7 @@ const Header = ({ isAuthenticated = false }) => {
     const [active, setActive] = useState("home")
 
     const handleNavOpen = (e) => {
-        window.innerWidth <= 864 && menuRef.current.classList.toggle("open")
+        window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
         e.target.id && setActive(e.target.id)
         scrollToTop()
     }
