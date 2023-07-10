@@ -1,7 +1,7 @@
 import "../../styles/header.scss";
 import React, { useRef } from "react";
 import { IoFastFoodOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -11,7 +11,9 @@ import CartMenuItem from "./CartMenuItem";
 
 const Header = ({ isAuthenticated = false }) => {
     const menuRef = useRef()
-    const [active, setActive] = useState("home")
+    const location = useLocation()
+    const currentPage = location.pathname.slice(1)
+    const [active, setActive] = useState(currentPage === "" ? "home" : currentPage)
 
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
