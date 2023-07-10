@@ -14,10 +14,10 @@ const Header = ({ isAuthenticated = false }) => {
     const location = useLocation()
     const currentPage = location.pathname.slice(1) === "" ? "home" : location.pathname.slice(1)
     const [active, setActive] = useState(currentPage)
-
+    
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
-        e.target.id && setActive(e.target.id)
+        setActive(e.target.id)
         scrollToTop()
     }
 
@@ -64,6 +64,7 @@ const Header = ({ isAuthenticated = false }) => {
                         Contact
                     </Link>
                     <Link
+                        id="cart"
                         to="/cart"
                         className={active === "cart" ? "active" : ""}
                         onClick={(e) => handleNavOpen(e)}
