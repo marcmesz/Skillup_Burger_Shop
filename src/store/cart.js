@@ -44,7 +44,7 @@ const cartSlice = createSlice({
 
             let updatedItems
             if (existingItem.amount === 1) {
-                updatedItems = state.items.filter(item => item.id !== action.payload)
+                updatedItems = state.items.filter(item => item.id !== action.payload.id)
             } else {
                 const updatedItem = { ...existingItem, amount: existingItem.amount - 1 }
                 updatedItems = [...state.items]

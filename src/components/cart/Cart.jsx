@@ -4,20 +4,21 @@ import { Link } from "react-router-dom";
 import burger1 from "../../assets/burger1.png";
 import burger2 from "../../assets/burger2.png";
 import burger3 from "../../assets/burger3.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import CartItem from "./CartItem";
+import { cartActions } from "../../store/cart";
 
 const Cart = () => {
+  const dispatch = useDispatch()
   const orderedItems = useSelector(state => state.cart.items)
 
-  const incrementHandler = (id) => {
-    console.log("incrementing " + id)
+  const incrementHandler = (order) => {
+    dispatch(cartActions.addItemToCart(order))
   }
-  
-  const decrementHandler = (id) => {
-  
-    console.log("decrementing " + id)
+
+  const decrementHandler = (order) => {
+    dispatch(cartActions.removeOneItemFromCart(order))
   }
 
 
@@ -36,8 +37,8 @@ const Cart = () => {
               title={order.title}
               img={burger1}
               value={order.amount}
-              increment={() => incrementHandler(order.id)}
-              decrement={() => decrementHandler(order.id)}
+              increment={() => incrementHandler(order)}
+              decrement={() => decrementHandler(order)}
             />
           )
         }) : <h3 className="text-center m-5">Your cart is empty.</h3>}
