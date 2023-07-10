@@ -1,0 +1,20 @@
+[
+    {
+        "id": "b01a9227b749",
+        "img": "/data/burgers/burger1.png",
+        "price": 200,
+        "title": "Cheese Burger"
+    },
+    {
+        "id": "b02a9337c759",
+        "img": "/data/burgers/burger2.png",
+        "price": 500,
+        "title": "Veg Cheese Burger"
+    },
+    {
+        "id": "b03a9447d769",
+        "img": "/data/burgers/burger3.png",
+        "price": 1800,
+        "title": "Cheese Burger with French Fries"
+    }
+]

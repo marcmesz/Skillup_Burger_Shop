@@ -5,11 +5,11 @@ import Popup from 'reactjs-popup';
 import { useRef } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs"
 
-const MenuCard = ({ itemNum, burgerSrc, price, title, handler, delay = 0 }) => {
+const MenuCard = (props) => {
   const popupRef = useRef()
 
-  const addToCartHandler = () => {
-    console.log("Added to cart...... now closing...")
+  const addToCartHandler = (id) => {
+    console.log(id + " Added to cart...... now closing...")
     setTimeout(() => popupRef.current.close(), 2500)
   }
 
@@ -25,14 +25,14 @@ const MenuCard = ({ itemNum, burgerSrc, price, title, handler, delay = 0 }) => {
         opacity: 1,
       }}
       transition={{
-        delay,
+        delay: props.delay
       }}
     >
       <main>
-        <img src={burgerSrc} alt={itemNum} />
-        <h5>₹{price}</h5>
-        <p>{title}</p>
-        <Popup ref={popupRef} onOpen={addToCartHandler} trigger={<button>Add to Cart</button>}>
+        <img src={props.burgerSrc} alt={props.title} />
+        <h5>₹{props.price}</h5>
+        <p>{props.title}</p>
+        <Popup ref={popupRef} onOpen={() => addToCartHandler(props.id)} trigger={<button>Add to Cart</button>}>
           <div className="added-to-cart">
             <BsFillCheckCircleFill />
             <span className="ms-2">Added to cart!</span>
