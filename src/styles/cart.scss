@@ -1,4 +1,5 @@
 @import "colors";
+@import "sizes";
 
 .cart {
   background-color: $pink;
@@ -100,7 +101,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $mobile) {
   .cart>main>article>a {
     float: none;
     display: block;

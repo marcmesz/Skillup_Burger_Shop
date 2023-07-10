@@ -1,4 +1,5 @@
 @import "colors";
+@import "sizes";
 
 footer {
   background-color: $dark;
@@ -46,7 +47,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $mobile) {
   footer main {
     grid-template-columns: 1fr;
     text-align: center;

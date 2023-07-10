@@ -1,4 +1,5 @@
 @import "colors";
+@import "sizes";
 
 .about {
   width: 100%;
@@ -89,7 +90,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $mobile) {
   .about>main {
     >h1 {
       font: 100 3rem "Roboto";

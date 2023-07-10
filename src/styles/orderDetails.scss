@@ -1,4 +1,5 @@
 @import "colors";
+@import "sizes";
 
 .orderDetails {
   background-color: $pink;
@@ -67,7 +68,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $mobile) {
   .orderDetails>main>div {
     >h1 {
       font-size: 1.4rem;

@@ -1,4 +1,5 @@
 @import "colors";
+@import "sizes";
 
 nav {
   position: relative;
@@ -93,8 +94,8 @@ nav {
   }
 }
 
-
-@media screen and (max-width: 864px) {
+// Main breakpoint to mobile device: 864px
+@media screen and (max-width: $mobile) {
   nav {
     height: auto;
     flex-direction: column;

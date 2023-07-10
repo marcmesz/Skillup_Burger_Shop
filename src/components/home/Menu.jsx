@@ -11,7 +11,7 @@ const Menu = () => {
     const addToCartHandler = (itemNum) => { }
 
     return (
-        <>
+        <div className="bg-white">
             <h1 className="page-title">Menu</h1>
             <section id="menu" className="container-xxl">
                 <div className="menu-grid">
@@ -41,7 +41,7 @@ const Menu = () => {
                     />
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 
