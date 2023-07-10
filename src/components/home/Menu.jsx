@@ -20,7 +20,7 @@ const Menu = () => {
             <section id="menu" className="container-xxl">
                 <div className="menu-grid">
                     {menu.length > 0 && menu.map((burger, index) => {
-                        const delay = ((index + 2) / 10 + (index / 2.2)).toFixed(1)
+                        const delay = ((index + 2) / 10 + (index / 3)).toFixed(1)
                         return (
                             <MenuCard
                                 key={burger.id}
