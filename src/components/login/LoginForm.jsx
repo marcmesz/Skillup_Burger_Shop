@@ -1,49 +1,17 @@
-import { MDBTabsPane, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from "mdb-react-ui-kit";
+import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
+import { useState } from "react";
+import SocialLogin from "./SocialLogin";
 
 const LoginForm = ({ justifyActive }) => {
+
+    const [formValue, setFormValue] = useState({
+
+    })
+
+
     return (
         <MDBTabsPane show={justifyActive === "tab1"}>
-            <div className="text-center mb-3">
-                <p>Sign in with:</p>
-                <div
-                    className="d-flex justify-content-between mx-auto"
-                    style={{ width: "40%" }}
-                >
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="facebook-f" size="sm" />
-                    </MDBBtn>
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="twitter" size="sm" />
-                    </MDBBtn>
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="google" size="sm" />
-                    </MDBBtn>
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="github" size="sm" />
-                    </MDBBtn>
-                </div>
-                <p className="text-center mt-3">or:</p>
-            </div>
+            <SocialLogin type="in" />
             <MDBInput
                 wrapperClass="mb-4"
                 label="Email address"

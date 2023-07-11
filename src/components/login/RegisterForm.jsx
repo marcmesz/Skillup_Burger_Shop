@@ -1,71 +1,108 @@
-import { MDBTabsPane, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from "mdb-react-ui-kit";
+import React from "react";
+import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
+import SocialLogin from "./SocialLogin";
+import { useForm, Controller } from "react-hook-form";
 
 const RegisterForm = ({ justifyActive }) => {
+    const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
+
+    const onSubmit = (data, e) => {
+        let error = false
+
+        for (let key in data) {
+            if (typeof data[key] === "string") {
+                data[key] = data[key].trim()
+            }
+        }
+
+        if (data.password !== data.confirmPassword) {
+            error = true
+            e.target[4].classList.add("is-invalid")
+        }
+
+        if (!error) {
+            console.log("success!")
+            console.log(data)
+        }
+
+    }
+
     return (
         <MDBTabsPane show={justifyActive === "tab2"}>
-            <div className="text-center mb-3">
-                <p>Sign up with:</p>
-                <div
-                    className="d-flex justify-content-between mx-auto"
-                    style={{ width: "40%" }}
-                >
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="facebook-f" size="sm" />
-                    </MDBBtn>
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="twitter" size="sm" />
-                    </MDBBtn>
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="google" size="sm" />
-                    </MDBBtn>
-                    <MDBBtn
-                        tag="a"
-                        color="none"
-                        className="m-1"
-                        style={{ color: "#1266f1" }}
-                    >
-                        <MDBIcon fab icon="github" size="sm" />
-                    </MDBBtn>
-                </div>
-                <p className="text-center mt-3">or:</p>
-            </div>
-            <MDBInput wrapperClass="mb-4" label="Name" id="form1" type="text" />
-            <MDBInput
-                wrapperClass="mb-4"
-                label="Username"
-                id="form1"
-                type="text"
-            />
-            <MDBInput wrapperClass="mb-4" label="Email" id="form1" type="email" />
-            <MDBInput
-                wrapperClass="mb-4"
-                label="Password"
-                id="form1"
-                type="password"
-            />
-            <div className="d-flex justify-content-center mb-4">
-                <MDBCheckbox
-                    name="flexCheck"
-                    id="flexCheckDefault"
-                    label="I have read and agree to the terms"
-                />
-            </div>
-            <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
+            <SocialLogin type="up" />
+            <MDBValidation className="row g-3" onSubmit={handleSubmit(onSubmit)}>
+                <MDBValidationItem className="col-12" feedback="You have to enter your full name." invalid>
+                    <MDBInput
+                        wrapperClass="mb-1"
+                        label="Name"
+                        {...register("name")}
+                        id="name"
+                        type="text"
+                        required
+                    />
+                </MDBValidationItem>
+                <MDBValidationItem className="col-12" feedback="You have to enter a username." invalid>
+                    <MDBInput
+                        wrapperClass="mb-1"
+                        label="Username"
+                        {...register("username")}
+                        id="username"
+                        type="text"
+                        autoComplete="username"
+                        required
+                    />
+                </MDBValidationItem>
+                <MDBValidationItem className="col-12" feedback="You have to enter a valid e-mail address." invalid>
+                    <MDBInput
+                        wrapperClass="mb-1"
+                        label="Email"
+                        {...register("email")}
+                        id="email"
+                        type="email"
+                        required
+                    />
+                </MDBValidationItem>
+                <MDBValidationItem className="col-12" feedback="You have to enter a password." invalid>
+                    <MDBInput
+                        wrapperClass="mb-1"
+                        label="Password"
+                        {...register("password")}
+                        id="password"
+                        type="password"
+                        autoComplete="new-password"
+                        required
+                    />
+                </MDBValidationItem>
+                <MDBValidationItem className="col-12" feedback="The passwords doesn't match!" invalid>
+                    <MDBInput
+                        wrapperClass="mb-1"
+                        label="Confirm Password"
+                        {...register("confirmPassword")}
+                        id="confirmPassword"
+                        type="password"
+                        onChange={(e) => e.target.classList.remove("is-invalid")}
+                        autoComplete="current-password"
+                        required
+                    />
+                </MDBValidationItem>
+                <MDBValidationItem className="col-12" feedback="You have to agree to the terms to register." invalid>
+                    <div className="d-flex justify-content-center mb-1">
+                        <Controller
+                            name="agreeTerms"
+                            control={control}
+                            rules={{ required: true }}
+                            render={({ field }) => <MDBCheckbox
+                                label="I have read and agree to the terms."
+                                id="agreeTerms"
+                                required
+                                {...field}
+                                ref={null}
+                            />}
+                        />
+                    </div>
+                </MDBValidationItem>
+                <MDBBtn type="submit" className="mb-4 w-100">Sign up</MDBBtn>
+            </MDBValidation>
         </MDBTabsPane>
     )
 }
