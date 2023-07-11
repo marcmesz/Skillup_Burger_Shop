@@ -2,6 +2,7 @@ import React from "react";
 import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
 import SocialLogin from "./SocialLogin";
 import { useForm, Controller } from "react-hook-form";
+import bcrypt from "bcryptjs";
 
 const RegisterForm = ({ justifyActive }) => {
     const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
@@ -21,8 +22,21 @@ const RegisterForm = ({ justifyActive }) => {
         }
 
         if (!error) {
-            console.log("success!")
+            // Register the user if everything went OK!
+            /* const checkPassword = bcrypt.compareSync(data.password, hash) */
             console.log(data)
+            const salt = bcrypt.genSaltSync(10)
+            const hash = bcrypt.hashSync(data.password, salt)
+            const registerUser = {
+                isAuthenticated: true,
+                username: data.username,
+                password: hash,
+                name: data.name,
+                email: data.email,
+                address: [],
+                orders: []
+            }
+            console.log(registerUser)
         }
 
     }
@@ -73,7 +87,7 @@ const RegisterForm = ({ justifyActive }) => {
                         required
                     />
                 </MDBValidationItem>
-                <MDBValidationItem className="col-12" feedback="The passwords doesn't match!" invalid>
+                <MDBValidationItem className="col-12" feedback="Passwords do not match!" invalid>
                     <MDBInput
                         wrapperClass="mb-1"
                         label="Confirm Password"
