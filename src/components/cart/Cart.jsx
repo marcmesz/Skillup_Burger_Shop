@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import CartItem from "./CartItem";
-import { cartActions } from "../../store/cart";
+import { cartActions } from "../../store/cartSlice";
 import CartEmpty from "./CartEmpty";
 
 const Cart = () => {

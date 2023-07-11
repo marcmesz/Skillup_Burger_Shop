@@ -5,7 +5,7 @@ import Popup from 'reactjs-popup';
 import { useRef } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs"
 import { useDispatch } from 'react-redux'
-import { cartActions } from "../../store/cart";
+import { cartActions } from "../../store/cartSlice";
 
 const MenuCard = (props) => {
   const popupRef = useRef()

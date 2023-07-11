@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const cartSlice = createSlice({
-    name: 'cart',
+    name: "cart",
     initialState: {
         items: [],
         tax: 18,
@@ -37,8 +37,6 @@ const cartSlice = createSlice({
             state.totalItems = state.totalItems + 1
             state.taxTotal = (state.subTotal / 100) * state.tax
             state.totalAmount = state.subTotal + state.taxTotal + state.shipping
-
-            console.log(Object.assign({}, state))
         },
 
         removeOneItemFromCart(state, action) {
@@ -66,13 +64,9 @@ const cartSlice = createSlice({
             else {
                 state.totalAmount = state.subTotal + state.taxTotal + state.shipping
             }
-
-            console.log(Object.assign({}, state))
-
         }
     }
 })
 
 export const cartActions = cartSlice.actions
-
 export default cartSlice

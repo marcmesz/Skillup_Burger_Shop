@@ -116,13 +116,22 @@ nav {
         justify-content: center;
       }
 
-      a+a {
+      a+a,
+      a+div {
+        width: 100%;
         border-top: 1px solid rgba(0, 0, 0, .2);
       }
     }
 
     .mobile-icon {
       display: block;
+    }
+
+    .navbar .container {
+      width: 100%;
+      justify-content: center;
+      margin: 0 !important;
+      padding: 1em 0 !important;
     }
   }
 
@@ -138,13 +147,5 @@ nav {
 
   a.active::after {
     display: none;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  nav {
-    >div>a {
-      margin: 0 0.5rem;
-    }
   }
 }

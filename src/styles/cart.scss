@@ -114,8 +114,10 @@
     color: $red;
     text-transform: none;
 
-    &:hover {
-      color: $reddark;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $reddark !important;
       border-color: $reddark !important;
     }
   }
