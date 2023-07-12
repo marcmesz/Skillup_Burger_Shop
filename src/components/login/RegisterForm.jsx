@@ -49,7 +49,6 @@ const RegisterForm = ({ justifyActive }) => {
     useEffect(() => {
         if (process === "reg_error") {
             regError.classList.add("is-invalid")
-            regError.style.borderColor = "#dc4c64 !important"
         }
     }, [process, regError])
 
