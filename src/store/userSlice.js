@@ -23,7 +23,7 @@ const userSlice = createSlice({
                 state.process = "reg_success"
             }
             else {
-                state.process = "reg_fail"
+                state.process = "reg_error"
             }
 
             console.log(Object.assign({}, state))

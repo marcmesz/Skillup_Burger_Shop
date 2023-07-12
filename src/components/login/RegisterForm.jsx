@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
 import SocialLogin from "./SocialLogin";
 import { useForm, Controller } from "react-hook-form";
 import bcrypt from "bcryptjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 
 const RegisterForm = ({ justifyActive }) => {
     const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
+    const [regError, setregError] = useState(null)
+    const process = useSelector(state => state.user.process)
     const dispatch = useDispatch()
 
     const onSubmit = (data, e) => {
@@ -38,11 +40,18 @@ const RegisterForm = ({ justifyActive }) => {
                 address: [],
                 orders: []
             }
-
+            setregError(e.target[2])
             dispatch(userActions.registerUser(registerUser))
         }
 
     }
+
+    useEffect(() => {
+        if (process === "reg_error") {
+            regError.classList.add("is-invalid")
+            regError.style.borderColor = "#dc4c64 !important"
+        }
+    }, [process, regError])
 
     return (
         <MDBTabsPane show={justifyActive === "tab2"}>
@@ -69,7 +78,13 @@ const RegisterForm = ({ justifyActive }) => {
                         required
                     />
                 </MDBValidationItem>
-                <MDBValidationItem className="col-12" feedback="You have to enter a valid e-mail address." invalid>
+                <MDBValidationItem
+                    className="col-12"
+                    feedback={process === "reg_error" ?
+                        "E-mail is already in use, please choose another one." :
+                        "You have to enter a valid e-mail address."
+                    }
+                    invalid>
                     <MDBInput
                         wrapperClass="mb-1"
                         label="Email"
