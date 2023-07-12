@@ -43,7 +43,6 @@ const RegisterForm = ({ justifyActive }) => {
             setregError(e.target[2])
             dispatch(userActions.registerUser(registerUser))
         }
-
     }
 
     useEffect(() => {
@@ -90,6 +89,7 @@ const RegisterForm = ({ justifyActive }) => {
                         {...register("email")}
                         id="email"
                         type="email"
+                        onChange={(e) => e.target.classList.remove("is-invalid")}
                         required
                     />
                 </MDBValidationItem>
