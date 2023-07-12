@@ -24,3 +24,11 @@ h1.page-title {
 .container-xxl {
     max-width: 1600px !important;
 }
+
+.btn-primary {
+    background-color: $red !important;
+
+    &:hover {
+        background-color: $reddark !important;
+    }
+}

@@ -1,11 +1,17 @@
 import "../../styles/login.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MDBContainer, MDBTabs, MDBTabsItem, MDBTabsLink, MDBTabsContent } from "mdb-react-ui-kit";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { userActions } from "../../store/userSlice";
 
 const Login = () => {
     const [justifyActive, setJustifyActive] = useState("tab1")
+    const process = useSelector(state => state.user.process)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleJustifyClick = (value) => {
         if (value === justifyActive) {
@@ -13,6 +19,13 @@ const Login = () => {
         }
         setJustifyActive(value)
     }
+
+    useEffect(() => {
+        if (process === "reg_success") {
+            navigate("/registration-successful")
+            dispatch(userActions.resetProcess())
+        }
+    }, [process, navigate, dispatch])
 
     return (
         <MDBContainer className="p-3 my-5 d-flex flex-column w-50">

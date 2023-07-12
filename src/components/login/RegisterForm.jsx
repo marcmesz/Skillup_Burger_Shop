@@ -3,9 +3,12 @@ import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidatio
 import SocialLogin from "./SocialLogin";
 import { useForm, Controller } from "react-hook-form";
 import bcrypt from "bcryptjs";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/userSlice";
 
 const RegisterForm = ({ justifyActive }) => {
     const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
+    const dispatch = useDispatch()
 
     const onSubmit = (data, e) => {
         let error = false
@@ -24,7 +27,6 @@ const RegisterForm = ({ justifyActive }) => {
         if (!error) {
             // Register the user if everything went OK!
             /* const checkPassword = bcrypt.compareSync(data.password, hash) */
-            console.log(data)
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(data.password, salt)
             const registerUser = {
@@ -36,7 +38,8 @@ const RegisterForm = ({ justifyActive }) => {
                 address: [],
                 orders: []
             }
-            console.log(registerUser)
+
+            dispatch(userActions.registerUser(registerUser))
         }
 
     }

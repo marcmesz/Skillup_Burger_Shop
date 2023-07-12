@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        users: []
+        users: [],
+        process: ""
     },
 
     reducers: {
@@ -16,11 +17,24 @@ const userSlice = createSlice({
         },
 
         registerUser(state, action) {
-            
+            const existingUser = state.users.find(user => user.email === action.payload.email)
+            if (!existingUser) {
+                state.users = [...state.users, action.payload]
+                state.process = "reg_success"
+            }
+            else {
+                state.process = "reg_fail"
+            }
+
+            console.log(Object.assign({}, state))
         },
 
         addOrderToUser(state, action) {
 
+        },
+
+        resetProcess(state) {
+            state.process = ""
         }
     }
 })

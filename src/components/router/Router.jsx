@@ -8,6 +8,7 @@ import Profile from "../profile/Profile";
 import MyOrders from "../myOrders/MyOrders";
 import OrderDetails from "../myOrders/OrderDetails";
 import About from "../about/About";
+import RegistrationSuccess from "../login/RegistrationSuccess";
 
 const Router = () => {
     return (
@@ -21,6 +22,7 @@ const Router = () => {
             <Route path="/me" element={<Profile />} />
             <Route path="/myorders" element={<MyOrders />} />
             <Route path="/order/:id" element={<OrderDetails />} />
+            <Route path="/registration-successful" element={<RegistrationSuccess />} />
         </Routes>
     )
 }

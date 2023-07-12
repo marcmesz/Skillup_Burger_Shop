@@ -1,5 +1,4 @@
 import "../../styles/menuCard.scss";
-import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Popup from 'reactjs-popup';
 import { useRef } from "react";
