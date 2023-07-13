@@ -7,14 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 
 const RegisterForm = ({ justifyActive }) => {
-    const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
+    const { register, handleSubmit, formState: { errors }, control } = useForm({ defaultValues: { agreeTerms: false } })
     const [regError, setregError] = useState(null)
     const process = useSelector(state => state.user.process)
     const dispatch = useDispatch()
 
     const onSubmit = (data, e) => {
         let error = false
-
         for (let key in data) {
             if (typeof data[key] === "string") {
                 data[key] = data[key].trim()
@@ -59,20 +58,14 @@ const RegisterForm = ({ justifyActive }) => {
                     <MDBInput
                         wrapperClass="mb-1"
                         label="Name"
-                        {...register("name")}
+                        {...register("name", {
+                            required: true,
+                            validate: {
+                                minLength: v => v.length >= 3
+                            }
+                        })}
                         id="name"
                         type="text"
-                        required
-                    />
-                </MDBValidationItem>
-                <MDBValidationItem className="col-12" feedback="You have to enter a username." invalid>
-                    <MDBInput
-                        wrapperClass="mb-1"
-                        label="Username"
-                        {...register("username")}
-                        id="username"
-                        type="text"
-                        autoComplete="username"
                         required
                     />
                 </MDBValidationItem>
@@ -86,10 +79,18 @@ const RegisterForm = ({ justifyActive }) => {
                     <MDBInput
                         wrapperClass="mb-1"
                         label="Email"
-                        {...register("email")}
+                        {...register("email", {
+                            required: "Email is required",
+                            validate: {
+                                maxLength: (v) =>
+                                    v.length <= 50 || "The email should have at most 50 characters",
+                                matchPattern: (v) =>
+                                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+                                    "Email address must be a valid address",
+                            },
+                        })}
                         id="email"
                         type="email"
-                        onChange={(e) => e.target.classList.remove("is-invalid")}
                         required
                     />
                 </MDBValidationItem>
