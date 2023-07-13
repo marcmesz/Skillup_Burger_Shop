@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 
 const RegisterForm = ({ justifyActive }) => {
-    const { register, handleSubmit, formState: { errors }, control } = useForm({ defaultValues: { agreeTerms: false } })
+    const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
     const [regError, setregError] = useState(null)
     const process = useSelector(state => state.user.process)
     const dispatch = useDispatch()
