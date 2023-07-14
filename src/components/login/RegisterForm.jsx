@@ -74,9 +74,13 @@ const RegisterForm = ({ justifyActive }) => {
                     invalid>
                     <MDBInput
                         wrapperClass="mb-1"
-                        label="Email"
+                        label="E-mail address"
+                        id="email"
+                        type="email"
+                        autoComplete="email"
+                        required
                         {...register("email", {
-                            required: "E-mail is required.",
+                            required: "You have to enter your e-mail address.",
                             validate: {
                                 maxLength: (v) =>
                                     v.length <= 50 || "The email should have at most 50 characters",
@@ -85,9 +89,6 @@ const RegisterForm = ({ justifyActive }) => {
                                     "You have to enter a valid e-mail address!"
                             },
                         })}
-                        id="email"
-                        type="email"
-                        required
                     />
                     {errors.email && <div className="invalid-feedback d-block">{errors.email.message}</div>}
                 </MDBValidationItem>
