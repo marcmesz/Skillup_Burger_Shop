@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 
 const RegisterForm = ({ justifyActive }) => {
-    const { register, handleSubmit, control } = useForm({ defaultValues: { agreeTerms: false } })
+    const { register, handleSubmit, formState: { errors }, control } = useForm()
     const [regError, setregError] = useState(null)
+    const [matchPassword, setMatchPassword] = useState(false)
     const process = useSelector(state => state.user.process)
     const dispatch = useDispatch()
 
     const onSubmit = (data, e) => {
+        console.log(data)
         let error = false
         for (let key in data) {
             if (typeof data[key] === "string") {
@@ -22,7 +24,8 @@ const RegisterForm = ({ justifyActive }) => {
 
         if (data.password !== data.confirmPassword) {
             error = true
-            e.target[4].classList.add("is-invalid")
+            setMatchPassword(true)
+            e.target[3].classList.add("is-invalid")
         }
 
         if (!error) {
@@ -32,14 +35,13 @@ const RegisterForm = ({ justifyActive }) => {
             const hash = bcrypt.hashSync(data.password, salt)
             const registerUser = {
                 isAuthenticated: true,
-                username: data.username,
                 password: hash,
                 name: data.name,
                 email: data.email,
                 address: [],
                 orders: []
             }
-            setregError(e.target[2])
+            setregError(e.target[1])
             dispatch(userActions.registerUser(registerUser))
         }
     }
@@ -59,10 +61,7 @@ const RegisterForm = ({ justifyActive }) => {
                         wrapperClass="mb-1"
                         label="Name"
                         {...register("name", {
-                            required: true,
-                            validate: {
-                                minLength: v => v.length >= 3
-                            }
+                            required: true
                         })}
                         id="name"
                         type="text"
@@ -71,28 +70,26 @@ const RegisterForm = ({ justifyActive }) => {
                 </MDBValidationItem>
                 <MDBValidationItem
                     className="col-12"
-                    feedback={process === "reg_error" ?
-                        "E-mail is already in use, please choose another one." :
-                        "You have to enter a valid e-mail address."
-                    }
+                    feedback={process === "reg_error" && "E-mail is already in use, please choose another one."}
                     invalid>
                     <MDBInput
                         wrapperClass="mb-1"
                         label="Email"
                         {...register("email", {
-                            required: "Email is required",
+                            required: "E-mail is required.",
                             validate: {
                                 maxLength: (v) =>
                                     v.length <= 50 || "The email should have at most 50 characters",
                                 matchPattern: (v) =>
                                     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-                                    "Email address must be a valid address",
+                                    "You have to enter a valid e-mail address!"
                             },
                         })}
                         id="email"
                         type="email"
                         required
                     />
+                    {errors.email && <div className="invalid-feedback d-block">{errors.email.message}</div>}
                 </MDBValidationItem>
                 <MDBValidationItem className="col-12" feedback="You have to enter a password." invalid>
                     <MDBInput
@@ -105,7 +102,9 @@ const RegisterForm = ({ justifyActive }) => {
                         required
                     />
                 </MDBValidationItem>
-                <MDBValidationItem className="col-12" feedback="Passwords do not match!" invalid>
+                <MDBValidationItem className="col-12" feedback={
+                    matchPassword ? "Passwords do not match!" : "You have to confirm your password."
+                } invalid>
                     <MDBInput
                         wrapperClass="mb-1"
                         label="Confirm Password"
