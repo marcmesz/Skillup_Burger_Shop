@@ -1,28 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
-import bcrypt from "bcryptjs";
+
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
         users: [],
-        process: ""
+        process: {
+            type: "",
+            message: ""
+        }
     },
 
     reducers: {
         loginUser(state, action) {
-            const findUser = state.users.find(user => user.email === action.payload.email)
-            if (findUser) {
-                bcrypt.compare(action.payload.password, findUser.password).then(isAuth => {
-                    if (isAuth) {
-                        console.log("You logged in.")
-                    }
-                    else{
-                        console.log("Password is incorrect")
-                    }
-                })
+            if (action.payload.isAuthenticated) {
+                const user = state.users.find(user => user.email === action.payload.email)
+                const userIndex = state.users.findIndex(user => user.email === action.payload.email)
+                const updateUsers = [...state.users]
+
+                Object.assign(user, action.payload)
+                updateUsers[userIndex] = user
+
+                state.users = updateUsers
+                state.process = {
+                    type: "login_success",
+                    message: ""
+                }
             }
-            else{
-                console.log("E-mail or Password is incorrect.")
+            else {
+                state.process = {
+                    type: "login_error",
+                    message: "E-mail or password is incorrect."
+                }
             }
         },
 
@@ -32,12 +41,19 @@ const userSlice = createSlice({
 
         registerUser(state, action) {
             const existingUser = state.users.find(user => user.email === action.payload.email)
+
             if (!existingUser) {
                 state.users = [...state.users, action.payload]
-                state.process = "reg_success"
+                state.process = {
+                    type: "reg_success",
+                    message: ""
+                }
             }
             else {
-                state.process = "reg_error"
+                state.process = {
+                    type: "reg_error",
+                    message: "E-mail is already in use, please choose another one."
+                }
             }
         },
 
@@ -46,7 +62,10 @@ const userSlice = createSlice({
         },
 
         resetProcess(state) {
-            state.process = ""
+            state.process = {
+                type: "",
+                message: ""
+            }
         }
     }
 })

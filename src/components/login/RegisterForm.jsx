@@ -44,10 +44,10 @@ const RegisterForm = ({ justifyActive }) => {
     }
 
     useEffect(() => {
-        if (process === "reg_error") {
+        if (process.type === "reg_error") {
             regError.classList.add("is-invalid")
         }
-    }, [process, regError])
+    }, [process.type, regError])
 
     return (
         <MDBTabsPane show={justifyActive === "tab2"}>
@@ -67,7 +67,7 @@ const RegisterForm = ({ justifyActive }) => {
                 </MDBValidationItem>
                 <MDBValidationItem
                     className="col-12"
-                    feedback={process === "reg_error" && "E-mail is already in use, please choose another one."}
+                    feedback={process.type === "reg_error" && process.message}
                     invalid>
                     <MDBInput
                         wrapperClass="mb-1"

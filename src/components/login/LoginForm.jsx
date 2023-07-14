@@ -1,27 +1,43 @@
 import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
 import SocialLogin from "./SocialLogin";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
+import LoginError from "./LoginError";
+import bcrypt from "bcryptjs";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const LoginForm = ({ justifyActive }) => {
     const { register, handleSubmit, formState: { errors }, control } = useForm({ defaultValues: { rememberMe: false } })
+    const formRef = useRef()
     const dispatch = useDispatch()
+    const state = useSelector(state => state.user)
 
     const onSubmit = (data) => {
-        const loginUser = {
-            email: data.emailLogin,
-            password: data.passwordLogin.trim(),
-            rememberMe: data.rememberMe
-        }
+        /* data.rememberMe */
+        const findUser = state.users.find(user => user.email === data.emailLogin)
 
-        dispatch(userActions.loginUser(loginUser))
+        if (findUser) {
+            bcrypt.compare(data.passwordLogin.trim(), findUser.password).then(isAuth => {
+                dispatch(userActions.loginUser({ email: findUser.email, isAuthenticated: isAuth }))
+            })
+        }
     }
+
+    useEffect(() => {
+        if (state.process.type === "login_error") {
+            formRef.current.classList.remove("was-validated")
+            formRef.current[1].value = ""
+            console.log("reset...")
+        }
+    }, [state.process.type])
 
     return (
         <MDBTabsPane show={justifyActive === "tab1"}>
             <SocialLogin type="in" />
-            <MDBValidation className="row g-3" onSubmit={handleSubmit(onSubmit)}>
+            {state.process.type === "login_error" && <LoginError message={state.process.message} />}
+            <MDBValidation ref={formRef} className="row g-3" onSubmit={handleSubmit(onSubmit)}>
                 <MDBValidationItem className="col-12" feedback="" invalid>
                     <MDBInput
                         wrapperClass="mb-1"

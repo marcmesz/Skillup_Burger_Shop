@@ -21,11 +21,11 @@ const Login = () => {
     }
 
     useEffect(() => {
-        if (process === "reg_success") {
-            navigate("/registration-successful")
+        if (process.type === "reg_success") {
             dispatch(userActions.resetProcess())
+            navigate("/registration-successful")
         }
-    }, [process, navigate, dispatch])
+    }, [process.type, navigate, dispatch])
 
     return (
         <MDBContainer className="p-3 my-5 login-container">
