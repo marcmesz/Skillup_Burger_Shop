@@ -25,6 +25,9 @@ const Login = () => {
             dispatch(userActions.resetProcess())
             navigate("/registration-successful")
         }
+        else if (process.type === "login_success") {
+            navigate("/me")
+        }
     }, [process.type, navigate, dispatch])
 
     return (
