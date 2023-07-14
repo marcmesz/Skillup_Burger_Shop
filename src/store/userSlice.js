@@ -23,7 +23,7 @@ const userSlice = createSlice({
 
                 state.users = updateUsers
                 state.process = {
-                    type: "login_success",
+                    type: "",
                     message: ""
                 }
             }
