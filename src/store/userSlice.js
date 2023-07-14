@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import bcrypt from "bcryptjs";
 
 const userSlice = createSlice({
     name: "user",
@@ -9,7 +10,20 @@ const userSlice = createSlice({
 
     reducers: {
         loginUser(state, action) {
-
+            const findUser = state.users.find(user => user.email === action.payload.email)
+            if (findUser) {
+                bcrypt.compare(action.payload.password, findUser.password).then(isAuth => {
+                    if (isAuth) {
+                        console.log("You logged in.")
+                    }
+                    else{
+                        console.log("Password is incorrect")
+                    }
+                })
+            }
+            else{
+                console.log("E-mail or Password is incorrect.")
+            }
         },
 
         logoutUser(state, action) {
@@ -25,8 +39,6 @@ const userSlice = createSlice({
             else {
                 state.process = "reg_error"
             }
-
-            console.log(Object.assign({}, state))
         },
 
         addOrderToUser(state, action) {

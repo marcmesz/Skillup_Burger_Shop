@@ -14,7 +14,6 @@ const RegisterForm = ({ justifyActive }) => {
     const dispatch = useDispatch()
 
     const onSubmit = (data, e) => {
-        console.log(data)
         let error = false
         for (let key in data) {
             if (typeof data[key] === "string") {
@@ -30,11 +29,9 @@ const RegisterForm = ({ justifyActive }) => {
 
         if (!error) {
             // Register the user if everything went OK!
-            /* const checkPassword = bcrypt.compareSync(data.password, hash) */
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(data.password, salt)
             const registerUser = {
-                isAuthenticated: true,
                 password: hash,
                 name: data.name,
                 email: data.email,
