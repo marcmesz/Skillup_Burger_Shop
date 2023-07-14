@@ -1,7 +1,6 @@
 import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
 import SocialLogin from "./SocialLogin";
 import { useForm, Controller } from "react-hook-form";
-import bcrypt from "bcryptjs";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/userSlice";
 
