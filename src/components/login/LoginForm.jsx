@@ -7,15 +7,19 @@ import LoginError from "./LoginError";
 import bcrypt from "bcryptjs";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useState } from "react";
 
 const LoginForm = ({ justifyActive }) => {
     const { register, handleSubmit, formState: { errors }, control } = useForm({ defaultValues: { rememberMe: false } })
     const formRef = useRef()
     const dispatch = useDispatch()
     const state = useSelector(state => state.user)
+    const [noAccount, setNoAccount] = useState(false)
+    const loginError = state.process.type === "login_error" || noAccount
 
     const onSubmit = (data) => {
         /* data.rememberMe */
+        dispatch(userActions.resetProcess())
         const findUser = state.users.find(user => user.email === data.emailLogin)
 
         if (findUser) {
@@ -23,8 +27,8 @@ const LoginForm = ({ justifyActive }) => {
                 dispatch(userActions.loginUser({ email: findUser.email, isAuth: isAuth }))
             })
         }
-        else{
-            console.log("no user...")
+        else {
+            setNoAccount(true)
         }
     }
 
@@ -32,14 +36,13 @@ const LoginForm = ({ justifyActive }) => {
         if (state.process.type === "login_error") {
             formRef.current.classList.remove("was-validated")
             formRef.current[1].value = ""
-            console.log("reset...")
         }
     }, [state.process.type])
 
     return (
         <MDBTabsPane show={justifyActive === "tab1"}>
             <SocialLogin type="in" />
-            {state.process.type === "login_error" && <LoginError message={state.process.message} />}
+            {loginError && <LoginError message={state.process.message || "No account found with this e-mail address."} />}
             <MDBValidation ref={formRef} className="row g-3" onSubmit={handleSubmit(onSubmit)}>
                 <MDBValidationItem className="col-12" feedback="" invalid>
                     <MDBInput
