@@ -20,8 +20,11 @@ const LoginForm = ({ justifyActive }) => {
 
         if (findUser) {
             bcrypt.compare(data.passwordLogin.trim(), findUser.password).then(isAuth => {
-                dispatch(userActions.loginUser({ email: findUser.email, isAuthenticated: isAuth }))
+                dispatch(userActions.loginUser({ email: findUser.email, isAuth: isAuth }))
             })
+        }
+        else{
+            console.log("no user...")
         }
     }
 

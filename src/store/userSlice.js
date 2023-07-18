@@ -5,6 +5,7 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         users: [],
+        isAuthenticated: {},
         process: {
             type: "",
             message: ""
@@ -13,15 +14,8 @@ const userSlice = createSlice({
 
     reducers: {
         loginUser(state, action) {
-            if (action.payload.isAuthenticated) {
-                const user = state.users.find(user => user.email === action.payload.email)
-                const userIndex = state.users.findIndex(user => user.email === action.payload.email)
-                const updateUsers = [...state.users]
-
-                Object.assign(user, action.payload)
-                updateUsers[userIndex] = user
-
-                state.users = updateUsers
+            if (action.payload.isAuth) {
+                state.isAuthenticated = action.payload
                 state.process = {
                     type: "login_success",
                     message: ""
@@ -30,13 +24,15 @@ const userSlice = createSlice({
             else {
                 state.process = {
                     type: "login_error",
-                    message: "E-mail or password is incorrect."
+                    message: "Incorrect password, please try again."
                 }
             }
         },
 
-        logoutUser(state, action) {
-
+        logoutUser(state) {
+            state.process = { type: "", message: "" }
+            state.isAuthenticated = {}
+            console.log("logged out...")
         },
 
         registerUser(state, action) {

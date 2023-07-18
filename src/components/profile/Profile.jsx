@@ -3,9 +3,18 @@ import React from "react";
 import { motion } from "framer-motion";
 import me from "../../assets/skj.jpg";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/userSlice";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //import { MdDashboard } from "react-icons/md";
 
 const Profile = () => {
+  const state = useSelector(state => state.user.isAuthenticated)
+  const loggedIn = state.isAuth
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const options = {
     initial: {
       y: "-100%",
@@ -16,6 +25,12 @@ const Profile = () => {
       opacity: 1,
     },
   };
+
+  useEffect(() => {
+    if (!loggedIn) {
+      navigate("/login")
+    }
+  }, [loggedIn, navigate])
 
   return (
     <section className="profile">
@@ -50,6 +65,7 @@ const Profile = () => {
           transition={{
             delay: 0.3,
           }}
+          onClick={() => dispatch(userActions.logoutUser())}
         >
           Logout
         </motion.button>
