@@ -9,7 +9,7 @@ import DropdownMenu from './DropdownMenu';
 import { useState } from "react";
 import CartMenuItem from "./CartMenuItem";
 
-const Header = ({ isAuthenticated = false }) => {
+const Header = () => {
     const menuRef = useRef()
     const location = useLocation()
     const currentPage = location.pathname.slice(1) === "" ? "home" : location.pathname.slice(1)

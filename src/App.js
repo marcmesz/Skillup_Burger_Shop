@@ -6,7 +6,7 @@ import Header from "./components/layout/Header";
 const App = () => {
   return (
     <>
-      <Header isAuthenticated={true} />
+      <Header />
       <Router />
       <Footer />
     </>
