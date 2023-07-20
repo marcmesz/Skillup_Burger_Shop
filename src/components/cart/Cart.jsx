@@ -40,7 +40,7 @@ const Cart = ({ confirmOrder }) => {
 
   return (
     <section className="cart">
-      <h1 className="page-title">{confirmOrder ? "Confirm your order" : "Cart"}</h1>
+      <h1 className="page-title">{confirmOrder ? "Confirm order" : "Cart"}</h1>
       <main>
         {confirmOrder && <ShippingDetails />}
         {!cartEmpty && orderedItems.map(order => {

@@ -7,7 +7,7 @@ import me from "../../assets/skj.jpg";
 const About = () => {
 
     return (
-        <section className="about">
+        <section className="page-content">
             <h1 className="page-title">About Us</h1>
             <main>
                 <article>
