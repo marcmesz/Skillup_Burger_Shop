@@ -28,7 +28,8 @@ const Cart = ({ confirmOrder }) => {
     !checkout && dispatch(userActions.handleProcess({ type: "", checkout: true }))
   }
 
-  const handleConfirmOrder = () => {
+  const handleConfirmOrder = (e) => {
+    e.preventDefault()
     console.log("confirm...")
   }
 
@@ -79,7 +80,7 @@ const Cart = ({ confirmOrder }) => {
             </div>
             <hr />
             {confirmOrder ?
-              <Link className="link w-100" to="/confirm-order">
+              <Link className="link w-100" to="/confirm-order" onClick={handleConfirmOrder}>
                 Confirm Order
               </Link>
               :
