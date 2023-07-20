@@ -25,10 +25,11 @@ h1.page-title {
     max-width: 1600px !important;
 }
 
-.btn-primary {
+.btn-primary, .link {
     background-color: $red !important;
 
     &:hover {
         background-color: $reddark !important;
+        color: $white;
     }
 }

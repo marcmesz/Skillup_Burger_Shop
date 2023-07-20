@@ -9,7 +9,7 @@ const DropdownMenu = ({ handleNavOpen }) => {
   useEffect(() => {
     const navs = [
       { name: "Profile", path: "/profile" },
-      { name: "Orders", path: "/myorders" },
+      { name: "Orders", path: "/my-orders" },
       { name: "Logout", path: "/logout" }
 
     ];

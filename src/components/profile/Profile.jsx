@@ -1,14 +1,19 @@
 import "../../styles/profile.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import me from "../../assets/skj.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
-//import { MdDashboard } from "react-icons/md";
 
 const Profile = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const cartItems = useSelector(state => state.cart.totalItems)
+  const myEmail = useSelector(state => state.user.isAuthenticated.email)
+  const myProfile = useSelector(state => state.user.users.find(user => user.email === myEmail))
+  const process = useSelector(state => state.user.process)
+  const checkout = process.checkout
 
   const options = {
     initial: {
@@ -19,14 +24,21 @@ const Profile = () => {
       y: 0,
       opacity: 1,
     },
-  };
+  }
+
+  useEffect(() => {
+    if (cartItems > 0 && checkout && process.type === "loggedIn") {
+      dispatch(userActions.handleProcess())
+      navigate("/cart")
+    }
+  }, [cartItems, checkout, process.type, navigate, dispatch])
 
   return (
     <section className="profile">
       <main>
         <motion.img src={me} alt="User" {...options} />
         <motion.h5 {...options} transition={{ delay: 0.3 }}>
-          Nelson
+          {myProfile.name}
         </motion.h5>
 
         <motion.div
@@ -39,7 +51,7 @@ const Profile = () => {
             opacity: 1,
           }}
         >
-          <Link to="/myorders">Orders</Link>
+          <Link to="/my-orders">Orders</Link>
         </motion.div>
 
         <motion.button

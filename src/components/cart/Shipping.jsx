@@ -1,7 +1,6 @@
 import "../../styles/shipping.scss";
 import React from "react";
 import { State } from "country-state-city";
-import Popup from "reactjs-popup";
 import { Link } from "react-router-dom";
 
 const Shipping = () => {
@@ -12,8 +11,8 @@ const Shipping = () => {
       <main>
         <form>
           <div>
-            <label>H.No.</label>
-            <input type="text" placeholder="Enter House No." />
+            <label>Street, H. No.</label>
+            <input type="text" placeholder="Enter Street, House No." />
           </div>
           <div>
             <label>City</label>
@@ -29,7 +28,7 @@ const Shipping = () => {
           <div>
             <label>State</label>
             <select>
-              <option value="">State</option>
+              <option value="" disabled>Select state</option>
               {State &&
                 State.getStatesOfCountry("IN").map((i) => (
                   <option value={i.isoCode} key={i.isoCode}>
@@ -46,26 +45,9 @@ const Shipping = () => {
             <label>Phone No.</label>
             <input type="number" placeholder="Enter Phone No." />
           </div>
-          <Popup
-            trigger={
-              <Link className="link" to="/myorders">
-                Confirm Order
-              </Link>
-            }
-          >
-            <div
-              style={{
-                color: "red",
-                transform: "translate(0%,-500%)",
-                backgroundColor: "#fff",
-                padding: "10px",
-                borderRadius: "5px",
-                boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-              }}
-            >
-              Order Successfully Placed!
-            </div>
-          </Popup>
+          <Link className="link mt-5" to="/confirm-order">
+            Confirm Address
+          </Link>
         </form>
       </main>
     </section>

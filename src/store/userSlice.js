@@ -8,7 +8,8 @@ const userSlice = createSlice({
         isAuthenticated: {},
         process: {
             type: "",
-            message: ""
+            message: "",
+            checkout: false
         }
     },
 
@@ -19,6 +20,7 @@ const userSlice = createSlice({
             }
             else {
                 state.process = {
+                    ...state.process,
                     type: "login_error",
                     message: "Incorrect password, please try again."
                 }
@@ -38,12 +40,14 @@ const userSlice = createSlice({
             if (!existingUser) {
                 state.users = [...state.users, action.payload]
                 state.process = {
+                    ...state.process,
                     type: "reg_success",
                     message: ""
                 }
             }
             else {
                 state.process = {
+                    ...state.process,
                     type: "reg_error",
                     message: "E-mail is already in use, please choose another one."
                 }
@@ -54,8 +58,14 @@ const userSlice = createSlice({
 
         },
 
-        resetProcess(state, action) {
-            state.process = { type: action.payload ?? "", message: "" }
+        handleProcess(state, action) {
+            state.process = {
+                ...state.process,
+                type: action.payload?.type ?? "",
+                message: "",
+                checkout: action.payload?.checkout ?? state.process.checkout
+            }
+            console.log(state.process)
         }
     }
 })

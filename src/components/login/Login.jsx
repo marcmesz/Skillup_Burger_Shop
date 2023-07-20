@@ -27,7 +27,7 @@ const Login = () => {
             dispatch(userActions.logoutUser())
         }
         else if (process.type === "reg_success") {
-            dispatch(userActions.resetProcess("finished"))
+            dispatch(userActions.handleProcess({ type: "finished" }))
             navigate("/registration-successful")
         }
 

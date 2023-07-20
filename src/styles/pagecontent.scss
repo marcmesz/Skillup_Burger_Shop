@@ -1,7 +1,7 @@
 @import "colors";
 @import "sizes";
 
-.about {
+.page-content {
   width: 100%;
   background-color: $pink;
 
@@ -92,7 +92,7 @@
 }
 
 @media screen and (max-width: $mobile) {
-  .about>main {
+  .page-content>main {
     >h1 {
       font: 100 3rem "Roboto";
       text-align: center;

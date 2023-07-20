@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../styles/about.scss";
+import "../../styles/pagecontent.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
@@ -10,12 +10,12 @@ const RegistrationSuccess = () => {
 
     useEffect(() => {
         if (!success) {
-            dispatch(userActions.resetProcess())
+            dispatch(userActions.handleProcess())
         }
     }, [success, dispatch])
 
     return (
-        <section className="about">
+        <section className="page-content">
             <h1 className="page-title">Registration</h1>
             <main className="container-xxl">
                 <article>

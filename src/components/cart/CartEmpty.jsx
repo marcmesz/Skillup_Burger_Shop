@@ -1,3 +1,4 @@
+import "../../styles/cart.scss";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 

@@ -1,0 +1,11 @@
+@import "colors";
+
+h4.detail-title {
+    margin: 0 auto;
+    margin-bottom: 1em;
+    padding: .5em 0;
+    width: 95%;
+    color: $red;
+    text-align: center;
+    border-bottom: 1px solid $red;
+}

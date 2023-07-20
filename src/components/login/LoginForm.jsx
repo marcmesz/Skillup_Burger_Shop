@@ -16,15 +16,17 @@ const LoginForm = ({ justifyActive, handleJustifyClick }) => {
     const state = useSelector(state => state.user)
     const [noAccount, setNoAccount] = useState(false)
     const loginError = state.process.type === "login_error" || noAccount
+    const checkout = state.process.checkout
 
     const onSubmit = (data) => {
-        /* data.rememberMe */
-        dispatch(userActions.resetProcess())
+        /* data.rememberMe needs to implement */
+        !checkout && dispatch(userActions.handleProcess())
         const findUser = state.users.find(user => user.email === data.emailLogin)
 
         if (findUser) {
             bcrypt.compare(data.passwordLogin.trim(), findUser.password).then(isAuth => {
                 dispatch(userActions.loginUser({ email: findUser.email, isAuth: isAuth }))
+                dispatch(userActions.handleProcess({ type: "loggedIn" }))
             })
         }
         else {

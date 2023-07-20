@@ -1,4 +1,4 @@
-import "../../styles/about.scss";
+import "../../styles/pagecontent.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import { RiFindReplaceLine } from "react-icons/ri";
