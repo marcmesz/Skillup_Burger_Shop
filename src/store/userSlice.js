@@ -29,7 +29,7 @@ const userSlice = createSlice({
 
         logoutUser(state) {
             if (state.isAuthenticated.isAuth) {
-                state.process = { type: "", message: "" }
+                state.process = { ...state.process, type: "", message: "" }
                 state.isAuthenticated = {}
             }
         },
@@ -65,7 +65,6 @@ const userSlice = createSlice({
                 message: "",
                 checkout: action.payload?.checkout ?? state.process.checkout
             }
-            console.log(state.process)
         }
     }
 })

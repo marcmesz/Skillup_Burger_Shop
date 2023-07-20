@@ -25,6 +25,7 @@ const Login = () => {
     useEffect(() => {
         if (location.pathname === "/logout") {
             dispatch(userActions.logoutUser())
+            navigate("/login")
         }
         else if (process.type === "reg_success") {
             dispatch(userActions.handleProcess({ type: "finished" }))

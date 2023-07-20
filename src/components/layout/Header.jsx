@@ -17,7 +17,6 @@ const Header = () => {
     const [active, setActive] = useState(currentPage)
     const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
 
-
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
         setActive(e.target.id)
