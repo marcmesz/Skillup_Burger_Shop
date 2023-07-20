@@ -1,4 +1,4 @@
-import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem } from "mdb-react-ui-kit";
+import { MDBTabsPane, MDBBtn, MDBInput, MDBCheckbox, MDBValidation, MDBValidationItem, MDBTabsLink } from "mdb-react-ui-kit";
 import SocialLogin from "./SocialLogin";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 
-const LoginForm = ({ justifyActive }) => {
+const LoginForm = ({ justifyActive, handleJustifyClick }) => {
     const { register, handleSubmit, formState: { errors }, control } = useForm({ defaultValues: { rememberMe: false } })
     const formRef = useRef()
     const dispatch = useDispatch()
@@ -94,8 +94,13 @@ const LoginForm = ({ justifyActive }) => {
                 </MDBValidationItem>
                 <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
             </MDBValidation>
-            <p className="text-center">
-                Not a member? <a href="#!">Register</a>
+            <p className="text-center d-flex justify-content-center gap-2 not-a-member">
+                Not a member? <MDBTabsLink
+                    onClick={() => handleJustifyClick("tab2")}
+                    active={justifyActive === "tab2"}
+                >
+                    Register
+                </MDBTabsLink>
             </p>
         </MDBTabsPane >
     )

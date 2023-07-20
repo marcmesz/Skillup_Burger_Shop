@@ -8,13 +8,16 @@ import { motion } from "framer-motion";
 import DropdownMenu from './DropdownMenu';
 import { useState } from "react";
 import CartMenuItem from "./CartMenuItem";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const menuRef = useRef()
     const location = useLocation()
     const currentPage = location.pathname.slice(1) === "" ? "home" : location.pathname.slice(1)
     const [active, setActive] = useState(currentPage)
-    
+    const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
+
+
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
         setActive(e.target.id)
@@ -71,7 +74,16 @@ const Header = () => {
                     >
                         <CartMenuItem />
                     </Link>
-                    <DropdownMenu handleNavOpen={handleNavOpen} />
+                    {loggedIn ? <DropdownMenu handleNavOpen={handleNavOpen} /> :
+                        <div className="btn-group">
+                            <Link to="/login">
+                                <button className="btn-lg btn-login d-flex align-items-center">
+                                    <span className="ms-1">Sign in</span>
+                                    <FiLogIn />
+                                </button>
+                            </Link>
+                        </div>
+                    }
                 </div>
             </nav>
         </div>

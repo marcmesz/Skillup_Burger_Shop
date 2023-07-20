@@ -6,10 +6,12 @@ import LoginForm from "./LoginForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../../store/userSlice";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
     const [justifyActive, setJustifyActive] = useState("tab1")
     const process = useSelector(state => state.user.process)
+    const location = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -21,14 +23,15 @@ const Login = () => {
     }
 
     useEffect(() => {
-        if (process.type === "reg_success") {
-            dispatch(userActions.resetProcess())
+        if (location.pathname === "/logout") {
+            dispatch(userActions.logoutUser())
+        }
+        else if (process.type === "reg_success") {
+            dispatch(userActions.resetProcess("finished"))
             navigate("/registration-successful")
         }
-        else if (process.type === "login_success") {
-            navigate("/me")
-        }
-    }, [process.type, navigate, dispatch])
+
+    }, [process.type, navigate, dispatch, location])
 
     return (
         <MDBContainer className="p-3 my-5 login-container">
@@ -55,7 +58,7 @@ const Login = () => {
                 </MDBTabsItem>
             </MDBTabs>
             <MDBTabsContent>
-                <LoginForm justifyActive={justifyActive} />
+                <LoginForm justifyActive={justifyActive} handleJustifyClick={handleJustifyClick} />
                 <RegisterForm justifyActive={justifyActive} />
             </MDBTabsContent>
         </MDBContainer>

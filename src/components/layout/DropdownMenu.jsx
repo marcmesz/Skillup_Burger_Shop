@@ -2,22 +2,19 @@ import "../../styles/DropdownMenu.scss";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
 
-
-const DropdownMenu = (props) => {
+const DropdownMenu = ({ handleNavOpen }) => {
   const [navLinks, setNavLinks] = useState([])
-  const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
 
   useEffect(() => {
     const navs = [
-      { name: "Login", path: "/login" },
+      { name: "Profile", path: "/profile" },
       { name: "Orders", path: "/myorders" },
-      { name: "Logout", path: "/login" }
+      { name: "Logout", path: "/logout" }
 
     ];
     setNavLinks(navs);
-  }, []);
+  }, [])
 
   return (
     <div>
@@ -33,12 +30,12 @@ const DropdownMenu = (props) => {
               aria-expanded="false"
             >
               <FaUser />
-              <span className="ms-1">{loggedIn ? "My Account" : "Login"}</span>
+              <span className="ms-1">My Account</span>
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
               {navLinks.map((d, i) => (
                 <li key={i}>
-                  <Link to={d.path} onClick={props.handleNavOpen}>
+                  <Link to={d.path} onClick={handleNavOpen}>
                     <button className="dropdown-item" type="button">
                       {d.name}
                     </button>

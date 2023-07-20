@@ -9,8 +9,11 @@ import MyOrders from "../myOrders/MyOrders";
 import OrderDetails from "../myOrders/OrderDetails";
 import About from "../about/About";
 import RegistrationSuccess from "../login/RegistrationSuccess";
+import { useSelector } from "react-redux";
 
 const Router = () => {
+    const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
+    
     return (
         <Routes>
             <Route path="/" element={<Home />} />
@@ -18,11 +21,13 @@ const Router = () => {
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/shipping" element={<Shipping />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/me" element={<Profile />} />
-            <Route path="/myorders" element={<MyOrders />} />
-            <Route path="/order/:id" element={<OrderDetails />} />
+            <Route path="/logout" element={<Login />} />
+            <Route path="/login" element={loggedIn ? <Profile /> : <Login />} />
+            <Route path="/profile" element={loggedIn ? <Profile /> : <Login />} />
+            <Route path="/myorders" element={loggedIn ? <MyOrders /> : <Login />} />
+            <Route path="/order/:id" element={loggedIn ? <OrderDetails /> : <Login />} />
             <Route path="/registration-successful" element={<RegistrationSuccess />} />
+            <Route path="*" element={<Home />} />
         </Routes>
     )
 }

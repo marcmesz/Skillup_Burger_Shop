@@ -16,10 +16,6 @@ const userSlice = createSlice({
         loginUser(state, action) {
             if (action.payload.isAuth) {
                 state.isAuthenticated = action.payload
-                state.process = {
-                    type: "login_success",
-                    message: ""
-                }
             }
             else {
                 state.process = {
@@ -30,9 +26,11 @@ const userSlice = createSlice({
         },
 
         logoutUser(state) {
-            state.process = { type: "", message: "" }
-            state.isAuthenticated = {}
-            console.log("logged out...")
+            if (state.isAuthenticated.isAuth) {
+                state.process = { type: "", message: "" }
+                state.isAuthenticated = {}
+                console.log("logged out...")
+            }
         },
 
         registerUser(state, action) {
@@ -57,11 +55,8 @@ const userSlice = createSlice({
 
         },
 
-        resetProcess(state) {
-            state.process = {
-                type: "",
-                message: ""
-            }
+        resetProcess(state, action) {
+            state.process = { type: action.payload ?? "", message: "" }
         }
     }
 })

@@ -1,3 +1,5 @@
+@import "colors";
+
 .login-container {
     max-width: 500px !important;
 
@@ -5,8 +7,15 @@
         margin-bottom: 0 !important;
     }
 
-    .btn-social{
+    .btn-social {
         min-width: fit-content;
     }
 
+}
+
+.not-a-member {
+    >a {
+        color: $red;
+        cursor: pointer;
+    }
 }

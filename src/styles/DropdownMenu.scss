@@ -5,7 +5,10 @@
   display: inline-block;
 }
 
-#dropdown-toggle {
+#dropdown-toggle,
+.btn-login {
+  font-weight: bold;
+  text-transform: uppercase;
   background-color: $red;
   border: none;
   color: $white;
@@ -14,9 +17,17 @@
   cursor: pointer;
 }
 
-#dropdown-toggle:hover {
+#dropdown-toggle:hover,
+.btn-login:hover {
   background-color: $reddark;
 }
+
+.btn-login {
+  & svg {
+    margin-left: .2em;
+  }
+}
+
 
 .dropdown-menu {
   position: absolute;

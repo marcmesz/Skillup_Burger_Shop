@@ -5,15 +5,10 @@ import me from "../../assets/skj.jpg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 //import { MdDashboard } from "react-icons/md";
 
 const Profile = () => {
-  const state = useSelector(state => state.user.isAuthenticated)
-  const loggedIn = state.isAuth
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const options = {
     initial: {
@@ -25,12 +20,6 @@ const Profile = () => {
       opacity: 1,
     },
   };
-
-  useEffect(() => {
-    if (!loggedIn) {
-      navigate("/login")
-    }
-  }, [loggedIn, navigate])
 
   return (
     <section className="profile">
