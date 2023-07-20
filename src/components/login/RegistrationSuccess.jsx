@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/about.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,15 +6,13 @@ import { userActions } from "../../store/userSlice";
 
 const RegistrationSuccess = () => {
     const success = useSelector(state => state.user.process.type === "finished")
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (!success) {
             dispatch(userActions.resetProcess())
-            navigate("/")
         }
-    }, [success, navigate, dispatch])
+    }, [success, dispatch])
 
     return (
         <section className="about">

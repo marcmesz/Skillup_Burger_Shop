@@ -29,7 +29,6 @@ const userSlice = createSlice({
             if (state.isAuthenticated.isAuth) {
                 state.process = { type: "", message: "" }
                 state.isAuthenticated = {}
-                console.log("logged out...")
             }
         },
 

@@ -13,7 +13,8 @@ import { useSelector } from "react-redux";
 
 const Router = () => {
     const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
-    
+    const regFinished = useSelector(state => state.user.process.type === "finished")
+
     return (
         <Routes>
             <Route path="/" element={<Home />} />
@@ -26,7 +27,7 @@ const Router = () => {
             <Route path="/profile" element={loggedIn ? <Profile /> : <Login />} />
             <Route path="/myorders" element={loggedIn ? <MyOrders /> : <Login />} />
             <Route path="/order/:id" element={loggedIn ? <OrderDetails /> : <Login />} />
-            <Route path="/registration-successful" element={<RegistrationSuccess />} />
+            <Route path="/registration-successful" element={regFinished ? <RegistrationSuccess /> : <Home />} />
             <Route path="*" element={<Home />} />
         </Routes>
     )
