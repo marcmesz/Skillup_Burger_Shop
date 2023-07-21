@@ -5,6 +5,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 import { cartActions } from "../../store/cartSlice";
+import { scrollToTop } from "../../functions/scrollToTop";
 
 const MyOrders = () => {
   const dispatch = useDispatch()
@@ -15,11 +16,11 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (orderCompleted) {
+      scrollToTop()
       dispatch(userActions.setCurrentOrderEmpty())
       dispatch(userActions.handleProcess())
       dispatch(cartActions.setCartEmpty())
     }
-    console.log(user)
   }, [orderCompleted, user, dispatch])
 
   return (

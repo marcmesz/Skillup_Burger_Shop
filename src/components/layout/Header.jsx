@@ -9,6 +9,7 @@ import DropdownMenu from './DropdownMenu';
 import { useState } from "react";
 import CartMenuItem from "./CartMenuItem";
 import { useSelector } from "react-redux";
+import { scrollToTop } from "../../functions/scrollToTop";
 
 const Header = () => {
     const menuRef = useRef()
@@ -21,10 +22,6 @@ const Header = () => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
         setActive(e.target.id)
         scrollToTop()
-    }
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
 
     return (
