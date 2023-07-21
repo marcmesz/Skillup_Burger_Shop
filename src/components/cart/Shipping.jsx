@@ -7,6 +7,7 @@ import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
+import { v4 as uuid } from "uuid"
 
 const Shipping = () => {
   const { register, handleSubmit, setValue, control, formState: { errors } } = useForm()
@@ -19,7 +20,8 @@ const Shipping = () => {
   const order = useSelector(state => state.cart)
 
   const onSubmit = (data) => {
-    dispatch(userActions.addOrderToUser({ address: data, order: order }))
+    const userOrder = Object.assign({ ...order }, { orderId: uuid().split("-")[0] })
+    dispatch(userActions.addOrderToUser({ address: data, order: userOrder }))
   }
 
   const errorStyle = {
