@@ -65,10 +65,6 @@ const cartSlice = createSlice({
             else {
                 state.totalAmount = state.subTotal + state.taxTotal + state.shipping
             }
-        },
-
-        confirmOrder(state, action) {
-            
         }
     }
 })

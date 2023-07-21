@@ -1,7 +1,7 @@
 import "../../styles/shipping.scss";
 import React, { useEffect } from "react";
 import { State, City } from "country-state-city";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
@@ -14,14 +14,18 @@ const Shipping = () => {
   const [country, setCountry] = useState("")
   const [state, setState] = useState("")
   const [checkError, setCheckError] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const stateOptions = State.getStatesOfCountry(country).map(option => ({ value: option.isoCode, label: option.name }))
   const required = { required: "This field is required." }
   const dispatch = useDispatch()
   const order = useSelector(state => state.cart)
+  const confirmOrder = useSelector(state => state.user.process.type === "confirm_order")
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
     const userOrder = Object.assign({ ...order }, { orderId: uuid().split("-")[0] })
     dispatch(userActions.addOrderToUser({ address: data, order: userOrder }))
+    setSubmitted(true)
   }
 
   const errorStyle = {
@@ -30,6 +34,12 @@ const Shipping = () => {
       outline: "2px solid red"
     })
   }
+
+  useEffect(() => {
+    if (submitted && confirmOrder) {
+      navigate("/confirm-order")
+    }
+  }, [submitted, confirmOrder, navigate])
 
   return (
     <section className="shipping">

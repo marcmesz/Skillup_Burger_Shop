@@ -9,3 +9,12 @@ h4.detail-title {
     text-align: center;
     border-bottom: 1px solid $red;
 }
+
+h6 {
+    margin: .3em 0 !important;
+}
+
+.shipping-address {
+    max-width: 25em;
+    text-align: right;
+}

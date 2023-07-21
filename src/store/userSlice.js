@@ -6,6 +6,7 @@ const userSlice = createSlice({
     initialState: {
         users: [],
         isAuthenticated: {},
+        currentOrder: {},
         process: {
             type: "",
             message: "",
@@ -63,10 +64,17 @@ const userSlice = createSlice({
             user.orders = [...user.orders, action.payload.order]
 
             updateUsers[userIndex] = user
-
             state.users = updateUsers
+            state.currentOrder = user
+            state.process = {
+                ...state.process,
+                type: "confirm_order",
+                message: ""
+            }
+        },
 
-            console.log(updateUsers)
+        confirmOrder(state, action) {
+            console.log("Thank you for ordering!")
         },
 
         handleProcess(state, action) {

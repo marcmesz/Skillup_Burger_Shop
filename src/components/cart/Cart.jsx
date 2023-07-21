@@ -15,6 +15,7 @@ const Cart = ({ confirmOrder }) => {
   const orderedItems = useSelector(state => state.cart.items)
   const cartEmpty = orderedItems.length === 0
   const { subTotal, taxTotal, totalAmount, shipping } = useSelector(state => state.cart)
+  const currentOrder = useSelector(state => state.user.currentOrder)
 
   const incrementHandler = (order) => {
     dispatch(cartActions.addItemToCart(order))
@@ -28,9 +29,8 @@ const Cart = ({ confirmOrder }) => {
     !checkout && dispatch(userActions.handleProcess({ type: "", checkout: true }))
   }
 
-  const handleConfirmOrder = (e) => {
-    e.preventDefault()
-    console.log("confirm...")
+  const handleConfirmOrder = () => {
+    dispatch(userActions.confirmOrder())
   }
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Cart = ({ confirmOrder }) => {
     <section className="cart">
       <h1 className="page-title">{confirmOrder ? "Confirm order" : "Cart"}</h1>
       <main>
-        {confirmOrder && <ShippingDetails />}
+        {confirmOrder && currentOrder && <ShippingDetails currentOrder={currentOrder} />}
         {!cartEmpty && orderedItems.map(order => {
           return (
             <CartItem
@@ -80,9 +80,9 @@ const Cart = ({ confirmOrder }) => {
             </div>
             <hr />
             {confirmOrder ?
-              <Link className="link w-100" to="/confirm-order" onClick={handleConfirmOrder}>
+              <button className="link w-100 border-0 mt-4" onClick={handleConfirmOrder}>
                 Confirm Order
-              </Link>
+              </button>
               :
               <Link to="/shipping" className="link" onClick={handleCheckout}>
                 Checkout
