@@ -5,15 +5,28 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/userSlice";
 
 const Shipping = () => {
-  const { register, handleSubmit, watch, control, formState: { errors } } = useForm()
+  const { register, handleSubmit, setValue, control, formState: { errors } } = useForm()
   const [country, setCountry] = useState("")
+  const [state, setState] = useState("")
+  const [checkError, setCheckError] = useState(false)
   const stateOptions = State.getStatesOfCountry(country).map(option => ({ value: option.isoCode, label: option.name }))
   const required = { required: "This field is required." }
+  const dispatch = useDispatch()
+  const order = useSelector(state => state.cart)
 
   const onSubmit = (data) => {
-    console.log(data)
+    dispatch(userActions.addOrderToUser({ address: data, order: order }))
+  }
+
+  const errorStyle = {
+    control: (base) => ({
+      ...base,
+      outline: "2px solid red"
+    })
   }
 
   return (
@@ -35,12 +48,14 @@ const Shipping = () => {
             <input {...register("city", required)} placeholder="Enter City" />
           </div>
           <div>
-            <label>Country</label>
+            <label>Country
+              {errors.country && <div className="input-error">{errors.country?.message}</div>}
+            </label>
             <Controller
               name="country"
               control={control}
               defaultValue=""
-              rules={{ required: "This field is required." }}
+              rules={required}
               render={({ field: { onChange, value } }) => (
                 <Select options={[
                   { value: "IN", label: "India" },
@@ -49,9 +64,13 @@ const Shipping = () => {
                   placeholder="Select Country"
                   className="custom-select"
                   value={value}
+                  styles={checkError && country === "" ? errorStyle : {}}
                   onChange={(e) => {
                     onChange(e)
                     setCountry(e.value)
+                    setValue("state", "")
+                    setState("")
+                    setCheckError(false)
                   }}
                 />
               )}
@@ -63,12 +82,19 @@ const Shipping = () => {
               name="state"
               control={control}
               defaultValue=""
-              rules={{ required: "This field is required." }}
-              render={({ field }) => (
+              rules={required}
+              render={({ field: { onChange, value } }) => (
                 <Select options={stateOptions}
                   placeholder="Select State"
                   className="custom-select"
-                  {...field} />
+                  styles={checkError && state === "" ? errorStyle : {}}
+                  onChange={(e) => {
+                    onChange(e)
+                    setState(e.value)
+                    setCheckError(false)
+                  }}
+                  value={value}
+                />
               )}
             />
           </div>
@@ -84,7 +110,7 @@ const Shipping = () => {
             </label>
             <input {...register("phone", required)} type="number" placeholder="Enter Phone No." />
           </div>
-          <button type="submit" className="link mt-5" style={{ border: "none" }}>
+          <button type="submit" className="link mt-5" style={{ border: "none" }} onClick={() => setCheckError(true)}>
             Confirm Address
           </button>
         </form>

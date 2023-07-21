@@ -55,7 +55,18 @@ const userSlice = createSlice({
         },
 
         addOrderToUser(state, action) {
+            const user = state.users.find(user => user.email === state.isAuthenticated.email)
+            const userIndex = state.users.findIndex(user => user.email === state.isAuthenticated.email)
+            const updateUsers = [...state.users]
 
+            user.address = action.payload.address
+            user.orders = [...user.orders, action.payload.order]
+
+            updateUsers[userIndex] = user
+
+            state.users = updateUsers
+
+            console.log(updateUsers)
         },
 
         handleProcess(state, action) {

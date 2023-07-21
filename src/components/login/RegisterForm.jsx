@@ -35,7 +35,7 @@ const RegisterForm = ({ justifyActive }) => {
                 password: hash,
                 name: data.name,
                 email: data.email,
-                address: [],
+                address: {},
                 orders: []
             }
             setregError(e.target[1])
