@@ -85,9 +85,9 @@ const userSlice = createSlice({
         completeOrder(state, action) {
             const user = state.users.find(user => user.email === action.payload.email)
             const userIndex = state.users.findIndex(user => user.email === action.payload.email)
-            const orderIndex = user.orders.findIndex(order => order.orderId === action.payload.orders[0].orderId)
+            const orderIndex = user.orders.findIndex(order => order.orderId === action.payload.orders[action.payload.orders.length - 1].orderId)
             const updateUsers = [...state.users]
-            const updateOrder = { ...action.payload.orders[0] }
+            const updateOrder = { ...action.payload.orders[orderIndex] }
 
             updateOrder.orderCompleted = new Date().toString()
             updateOrder.orderConfirmed = true

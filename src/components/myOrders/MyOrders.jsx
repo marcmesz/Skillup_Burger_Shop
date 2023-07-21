@@ -8,18 +8,19 @@ import { cartActions } from "../../store/cartSlice";
 
 const MyOrders = () => {
   const dispatch = useDispatch()
-  const arr = [1, 2, 3, 4]
   const userState = useSelector(state => state.user)
   const user = userState.users.find(user => user.email === userState.isAuthenticated.email)
   const orderCompleted = userState.process.type === "order_completed"
+  const orders = user.orders
 
   useEffect(() => {
     if (orderCompleted) {
-      console.log("vége.....")
       dispatch(userActions.setCurrentOrderEmpty())
+      dispatch(userActions.handleProcess())
       dispatch(cartActions.setCartEmpty())
     }
-  }, [orderCompleted, dispatch])
+    console.log(user)
+  }, [orderCompleted, user, dispatch])
 
   return (
     <section className="tableClass">
@@ -38,15 +39,15 @@ const MyOrders = () => {
           </thead>
 
           <tbody>
-            {arr.map((i) => (
-              <tr key={i}>
-                <td>#sdkfsdfdsf</td>
-                <td>Processing</td>
-                <td>23</td>
-                <td>₹{2132}</td>
+            {orders.map((order) => (
+              <tr key={order.orderId}>
+                <td>#{order.orderId}</td>
+                <td>{order.orderCompleted ? "Completed" : "Processing"}</td>
+                <td>{order.totalItems}</td>
+                <td>₹{order.totalAmount}</td>
                 <td>COD</td>
                 <td>
-                  <Link to={`/order/${"asdsds"}`}>
+                  <Link to={`/order/${order.orderId}`}>
                     <AiOutlineEye />
                   </Link>
                 </td>
