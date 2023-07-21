@@ -1,10 +1,25 @@
 import "../../styles/table.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/userSlice";
+import { cartActions } from "../../store/cartSlice";
 
 const MyOrders = () => {
-  const arr = [1, 2, 3, 4];
+  const dispatch = useDispatch()
+  const arr = [1, 2, 3, 4]
+  const userState = useSelector(state => state.user)
+  const user = userState.users.find(user => user.email === userState.isAuthenticated.email)
+  const orderCompleted = userState.process.type === "order_completed"
+
+  useEffect(() => {
+    if (orderCompleted) {
+      console.log("vége.....")
+      dispatch(userActions.setCurrentOrderEmpty())
+      dispatch(cartActions.setCartEmpty())
+    }
+  }, [orderCompleted, dispatch])
 
   return (
     <section className="tableClass">

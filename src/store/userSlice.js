@@ -73,10 +73,6 @@ const userSlice = createSlice({
             }
         },
 
-        confirmOrder(state, action) {
-            console.log("Thank you for ordering!")
-        },
-
         handleProcess(state, action) {
             state.process = {
                 ...state.process,
@@ -84,6 +80,33 @@ const userSlice = createSlice({
                 message: "",
                 checkout: action.payload?.checkout ?? state.process.checkout
             }
+        },
+
+        completeOrder(state, action) {
+            const user = state.users.find(user => user.email === action.payload.email)
+            const userIndex = state.users.findIndex(user => user.email === action.payload.email)
+            const orderIndex = user.orders.findIndex(order => order.orderId === action.payload.orders[0].orderId)
+            const updateUsers = [...state.users]
+            const updateOrder = { ...action.payload.orders[0] }
+
+            updateOrder.orderCompleted = new Date().toString()
+            updateOrder.orderConfirmed = true
+
+            user.orders[orderIndex] = updateOrder
+            user.address = action.payload.address
+
+            updateUsers[userIndex] = user
+            state.users = updateUsers
+
+            state.process = {
+                type: "order_completed",
+                message: "",
+                checkout: false
+            }
+        },
+
+        setCurrentOrderEmpty(state) {
+            state.currentOrder = {}
         }
     }
 })

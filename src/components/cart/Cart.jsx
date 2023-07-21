@@ -17,6 +17,7 @@ const Cart = ({ confirmOrder }) => {
   const { subTotal, taxTotal, totalAmount, shipping } = useSelector(state => state.cart)
   const currentOrder = useSelector(state => state.user.currentOrder)
 
+
   const incrementHandler = (order) => {
     dispatch(cartActions.addItemToCart(order))
   }
@@ -30,7 +31,7 @@ const Cart = ({ confirmOrder }) => {
   }
 
   const handleConfirmOrder = () => {
-    dispatch(userActions.confirmOrder())
+    dispatch(userActions.completeOrder({ ...currentOrder }))
   }
 
   useEffect(() => {

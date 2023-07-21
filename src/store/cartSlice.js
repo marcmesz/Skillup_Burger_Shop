@@ -10,7 +10,8 @@ const cartSlice = createSlice({
         taxTotal: 0,
         subTotal: 0,
         totalAmount: 0,
-        orderConfirmed: false
+        orderConfirmed: false,
+        orderCompleted: null
     },
 
     reducers: {
@@ -65,6 +66,16 @@ const cartSlice = createSlice({
             else {
                 state.totalAmount = state.subTotal + state.taxTotal + state.shipping
             }
+        },
+
+        setCartEmpty(state) {
+            state.items = []
+            state.totalItems = 0
+            state.taxTotal = 0
+            state.subTotal = 0
+            state.totalAmount = 0
+            state.orderConfirmed = false
+            state.orderCompleted = null
         }
     }
 })
