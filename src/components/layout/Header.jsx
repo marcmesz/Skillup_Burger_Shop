@@ -2,13 +2,11 @@ import "../../styles/header.scss";
 import React, { useRef } from "react";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
-import { FiLogIn } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DropdownMenu from './DropdownMenu';
 import { useState } from "react";
 import CartMenuItem from "./CartMenuItem";
-import { useSelector } from "react-redux";
 import { scrollToTop } from "../../functions/scrollToTop";
 
 const Header = () => {
@@ -16,11 +14,10 @@ const Header = () => {
     const location = useLocation()
     const currentPage = location.pathname.slice(1) === "" ? "home" : location.pathname.slice(1)
     const [active, setActive] = useState(currentPage)
-    const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
 
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
-        setActive(e.target.id)
+        e?.target?.id && setActive(e.target.id)
         scrollToTop()
     }
 
@@ -70,16 +67,7 @@ const Header = () => {
                     >
                         <CartMenuItem />
                     </Link>
-                    {loggedIn ? <DropdownMenu handleNavOpen={handleNavOpen} /> :
-                        <div className="btn-group">
-                            <Link to="/login">
-                                <button className="btn-lg btn-login d-flex align-items-center">
-                                    <span className="ms-1">Sign in</span>
-                                    <FiLogIn />
-                                </button>
-                            </Link>
-                        </div>
-                    }
+                    <DropdownMenu handleNavOpen={handleNavOpen} />
                 </div>
             </nav>
         </div>
