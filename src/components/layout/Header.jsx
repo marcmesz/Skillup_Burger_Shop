@@ -18,14 +18,14 @@ const Header = () => {
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
         e?.target?.id && setActive(e.target.id)
-        scrollToTop()
+        e !== "noScroll" && scrollToTop()
     }
 
     return (
         <div className="sticky-top bg-white shadow">
             <nav className="container-xxl" ref={menuRef}>
                 <motion.div initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
-                    <Link to="/" id="logo-with-text">
+                    <Link to="/" id="logo-with-text" onClick={() => scrollToTop()}>
                         <IoFastFoodOutline />
                         <div className="logo-text">
                             <span>Burger</span>
@@ -33,7 +33,7 @@ const Header = () => {
                         </div>
                     </Link>
                 </motion.div>
-                <FaHamburger className="mobile-icon" onClick={handleNavOpen} />
+                <FaHamburger className="mobile-icon" onClick={() => handleNavOpen("noScroll")} />
                 <div className="menu-items">
                     <Link
                         id="home"
