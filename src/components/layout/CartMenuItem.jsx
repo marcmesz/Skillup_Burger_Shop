@@ -6,7 +6,7 @@ const CartMenuItem = () => {
     const totalItems = useSelector(state => state.cart.totalItems)
     return (
         <div className="cart-menu-item">
-            {totalItems > 0 && <div className="items-in-cart">{totalItems}</div>}
+            {totalItems > 0 && <div className="items-in-cart" id="cart">{totalItems}</div>}
             <FiShoppingCart id="cart" />
         </div>
     )

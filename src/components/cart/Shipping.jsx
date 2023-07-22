@@ -8,6 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 import { v4 as uuid } from "uuid"
+import { scrollToTop } from "../../functions/scrollToTop";
 
 const Shipping = () => {
   const { register, handleSubmit, setValue, control, formState: { errors } } = useForm()
@@ -39,6 +40,7 @@ const Shipping = () => {
     if (submitted && confirmOrder) {
       navigate("/confirm-order")
     }
+    scrollToTop()
   }, [submitted, confirmOrder, navigate])
 
   return (
