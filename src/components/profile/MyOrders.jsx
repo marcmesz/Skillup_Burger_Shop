@@ -1,4 +1,5 @@
 import "../../styles/table.scss";
+import "../../styles/cart.scss";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
@@ -40,7 +41,7 @@ const MyOrders = () => {
           </thead>
 
           <tbody>
-            {orders.map((order) => (
+            {orders.length > 0 ? orders.map((order) => (
               <tr key={order.orderId}>
                 <td>#{order.orderId}</td>
                 <td>{order.orderCompleted ? "Completed" : "Processing"}</td>
@@ -53,7 +54,17 @@ const MyOrders = () => {
                   </Link>
                 </td>
               </tr>
-            ))}
+            )) :
+              <tr>
+                <td colSpan={6} className="cart-empty">
+                  <h6 className="mt-5">You don't have any orders yet.</h6>
+                  <p>
+                    <Link to="/" className="btn btn-lg btn-outline-primary my-4">
+                      Go back to explore the menu
+                    </Link>
+                  </p>
+                </td>
+              </tr>}
           </tbody>
         </table>
       </main>

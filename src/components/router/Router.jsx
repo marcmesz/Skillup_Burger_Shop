@@ -5,8 +5,8 @@ import Cart from "../cart/Cart"
 import Shipping from "../cart/Shipping"
 import Login from "../login/Login";
 import Profile from "../profile/Profile";
-import MyOrders from "../myOrders/MyOrders";
-import OrderDetails from "../myOrders/OrderDetails";
+import MyOrders from "../profile/MyOrders";
+import OrderDetails from "../profile/OrderDetails";
 import About from "../about/About";
 import RegistrationSuccess from "../login/RegistrationSuccess";
 import { useSelector } from "react-redux";
