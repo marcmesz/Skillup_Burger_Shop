@@ -7,12 +7,20 @@ import { FiLogIn } from "react-icons/fi";
 
 const DropdownMenu = ({ handleNavOpen }) => {
   const [navLinks, setNavLinks] = useState([])
+  const [showMenu, setshowMenu] = useState(false)
   const navigate = useNavigate()
   const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
 
   const handleLoginButton = () => {
     handleNavOpen()
     navigate("/login")
+  }
+
+  const handleLogoutButton = (path) => {
+    handleNavOpen()
+    if (path === "/logout") {
+      setshowMenu(false)
+    }
   }
 
   useEffect(() => {
@@ -23,6 +31,8 @@ const DropdownMenu = ({ handleNavOpen }) => {
 
     ];
     setNavLinks(navs);
+
+    console.log(navLinks)
   }, [])
 
   return (
@@ -37,17 +47,15 @@ const DropdownMenu = ({ handleNavOpen }) => {
                     id="dropdown-toggle"
                     type="button"
                     className="btn btn-lg dropdown-toggle d-flex align-items-center g-20"
-                    data-bs-toggle="dropdown"
-                    data-bs-display="static"
-                    aria-expanded="false"
+                    onClick={() => setshowMenu(prev => !prev)}
                   >
                     <FaUser />
                     <span className="ms-1">My Account</span>
                   </button>
-                  <ul className="dropdown-menu dropdown-menu-end">
+                  <ul className={showMenu ? "dropdown-menu dropdown-menu-end show" : "dropdown-menu dropdown-menu-end"}>
                     {navLinks.map((d, i) => (
                       <li key={i}>
-                        <Link to={d.path} onClick={handleNavOpen}>
+                        <Link to={d.path} onClick={() => handleLogoutButton(d.path)}>
                           <button className="dropdown-item" type="button">
                             {d.name}
                           </button>
