@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
+import axios from "axios";
 
 const DropdownMenu = ({ handleNavOpen }) => {
   const [navLinks, setNavLinks] = useState([])
@@ -24,15 +25,9 @@ const DropdownMenu = ({ handleNavOpen }) => {
   }
 
   useEffect(() => {
-    const navs = [
-      { name: "Profile", path: "/profile" },
-      { name: "Orders", path: "/my-orders" },
-      { name: "Logout", path: "/logout" }
-
-    ];
-    setNavLinks(navs);
-
-    console.log(navLinks)
+    axios
+      .get("/data/navigation.json")
+      .then(res => setNavLinks(res.data))
   }, [])
 
   return (

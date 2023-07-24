@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Profile",
+        "path": "/profile"
+    },
+    {
+        "name": "Orders",
+        "path": "/my-orders"
+    },
+    {
+        "name": "Logout",
+        "path": "/logout"
+    }
+]
