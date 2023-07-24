@@ -28,7 +28,6 @@ const RegisterForm = ({ justifyActive }) => {
         }
 
         if (!error) {
-            // Register the user if everything went OK!
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(data.password, salt)
             const registerUser = {
@@ -78,6 +77,7 @@ const RegisterForm = ({ justifyActive }) => {
                         required
                         {...register("email", {
                             required: "You have to enter your e-mail address.",
+                            onChange: () => process.type === "reg_error" && dispatch(userActions.handleProcess()),
                             validate: {
                                 maxLength: (v) =>
                                     v.length <= 50 || "The email should have at most 50 characters",
