@@ -17,11 +17,9 @@ const DropdownMenu = ({ handleNavOpen }) => {
     navigate("/login")
   }
 
-  const handleLogoutButton = (path) => {
+  const handleDropdownItems = () => {
     handleNavOpen()
-    if (path === "/logout") {
-      setshowMenu(false)
-    }
+    setshowMenu(false)
   }
 
   useEffect(() => {
@@ -50,7 +48,7 @@ const DropdownMenu = ({ handleNavOpen }) => {
                   <ul className={showMenu ? "dropdown-menu dropdown-menu-end show" : "dropdown-menu dropdown-menu-end"}>
                     {navLinks.map((d, i) => (
                       <li key={i}>
-                        <Link to={d.path} onClick={() => handleLogoutButton(d.path)}>
+                        <Link to={d.path} onClick={handleDropdownItems}>
                           <button className="dropdown-item" type="button">
                             {d.name}
                           </button>
