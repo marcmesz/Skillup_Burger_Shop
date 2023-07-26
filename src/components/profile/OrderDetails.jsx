@@ -85,7 +85,7 @@ const OrderDetails = () => {
                         <div key={index}>
                             <h4>{item.title}</h4>
                             <div>
-                                <span>{item.amount}</span> x <span>{item.price}</span>
+                                <span>{item.amount}</span> x <span>₹{item.price}</span>
                             </div>
                         </div>
                     ))}
