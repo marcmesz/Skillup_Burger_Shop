@@ -1,7 +1,17 @@
+import { useSelector } from "react-redux";
 import "../../styles/orderDetails.scss";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const OrderDetails = () => {
+    const { pathname } = useLocation()
+    const users = useSelector(state => state.user.users)
+    const userEmail = useSelector(state => state.user.isAuthenticated.email)
+    const user = users.find(user => user.email === userEmail)
+    const orderId = pathname.split("/").at(-1)
+    const currentOrder = user.orders.find(order => order.orderId === orderId)
+    const shippingAddress = `${user.address.streetHouseNo}, ${user.address.city}, ${user.address.state.label} ${user.address.pincode}, ${user.address.country.label}`
+    const orderDate = new Date(currentOrder.orderCompleted).toLocaleString()
 
     return (
         <section className="orderDetails">
@@ -10,99 +20,79 @@ const OrderDetails = () => {
                 <div>
                     <h1>Shipping</h1>
                     <p>
-                        <b>Address</b>
-                        {"sjda 12-32ss dsad"}
+                        <strong>Address: </strong>
+                        {shippingAddress}
                     </p>
                 </div>
                 <div>
                     <h1>Contact</h1>
                     <p>
-                        <b>Name</b>
-                        {"Stuart"}
+                        <strong>Name: </strong>
+                        {user.name}
                     </p>
                     <p>
-                        <b>Phone</b>
-                        {2131232123}
+                        <strong>Phone: </strong>
+                        {user.address.phone}
                     </p>
                 </div>
                 <div>
                     <h1>Status</h1>
                     <p>
-                        <b>Order Status</b>
-                        {"Processing"}
+                        <strong>Order Status: </strong>
+                        {currentOrder.orderCompleted ? "Completed" : "Processing"}
                     </p>
                     <p>
-                        <b>Placed At</b>
-                        {"23-02-2002"}
+                        <strong>Placed At: </strong>
+                        {orderDate}
                     </p>
                     <p>
-                        <b>Delivered At</b>
-                        {"23-02-2003"}
+                        <strong>Delivered At: </strong>
+                        {orderDate}
                     </p>
                 </div>
                 <div>
                     <h1>Payment</h1>
                     <p>
-                        <b>Payment Method</b>
+                        <strong>Payment Method: </strong>
                         {"COD"}
                     </p>
                     <p>
-                        <b>Payment Reference</b>#{"asdasdsadsad"}
+                        <strong>Payment Reference: </strong> #{currentOrder.orderId}
                     </p>
                     <p>
-                        <b>Paid At</b>
-                        {"23-02-2003"}
+                        <strong>Paid At: </strong>
+                        {orderDate}
                     </p>
                 </div>
                 <div>
                     <h1>Amount</h1>
                     <p>
-                        <b>Items Total</b>₹{2132}
+                        <strong>Items Total: </strong> ₹{currentOrder.subTotal}
                     </p>
                     <p>
-                        <b>Shipping Charges</b>₹{200}
+                        <strong>Shipping Charges: </strong> ₹{currentOrder.shipping}
                     </p>
                     <p>
-                        <b>Tax</b>₹{232}
+                        <strong>Tax: </strong> ₹{currentOrder.taxTotal}
                     </p>
                     <p>
-                        <b>Total Amount</b>₹{232 + 200 + 2132}
+                        <strong>Total Amount: ₹{currentOrder.totalAmount} </strong>
                     </p>
                 </div>
                 <article>
                     <h1>Ordered Items</h1>
-                    <div>
-                        <h4>Cheese Burger</h4>
-                        <div>
-                            <span>{12}</span> x <span>{232}</span>
+                    {currentOrder.items.map((item, index) => (
+                        <div key={index}>
+                            <h4>{item.title}</h4>
+                            <div>
+                                <span>{item.amount}</span> x <span>{item.price}</span>
+                            </div>
                         </div>
-                    </div>
+                    ))}
                     <div>
-                        <h4>Veg Cheese Burger</h4>
-                        <div>
-                            <span>{10}</span> x <span>{500}</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Burger Fries</h4>
-                        <div>
-                            <span>{10}</span> x <span>{1800}</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h4
-                            style={{
-                                fontWeight: 800,
-                            }}
-                        >
-                            Sub Total
-                        </h4>
-                        <div
-                            style={{
-                                fontWeight: 800,
-                            }}
-                        >
-                            ₹{2132}
+                        <h4 style={{ fontWeight: "bold" }}>Sub Total</h4>
+                        <div style={{ fontWeight: "bold" }}>
+                            ₹{currentOrder.subTotal}
                         </div>
                     </div>
                 </article>

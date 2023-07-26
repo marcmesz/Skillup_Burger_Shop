@@ -1,7 +1,7 @@
 import "../../styles/shipping.scss";
 import React, { useEffect } from "react";
-import { State, City } from "country-state-city";
-import { Link, useNavigate } from "react-router-dom";
+import { State } from "country-state-city";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
@@ -18,9 +18,12 @@ const Shipping = () => {
   const [submitted, setSubmitted] = useState(false)
   const stateOptions = State.getStatesOfCountry(country).map(option => ({ value: option.isoCode, label: option.name }))
   const required = { required: "This field is required." }
-  const dispatch = useDispatch()
   const order = useSelector(state => state.cart)
   const confirmOrder = useSelector(state => state.user.process.type === "confirm_order")
+  const userEmail = useSelector(state => state.user.isAuthenticated.email)
+  const users = useSelector(state => state.user.users)
+  const userAddress = users.find(user => user.email === userEmail).address
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
@@ -37,6 +40,12 @@ const Shipping = () => {
   }
 
   useEffect(() => {
+    if (userAddress) {
+      for (const key in userAddress) {
+        setValue(key, userAddress[key])
+      }
+    }
+
     if (submitted && confirmOrder) {
       navigate("/confirm-order")
     }
@@ -52,14 +61,19 @@ const Shipping = () => {
             <label htmlFor="streetHouseNo">Street, H. No.
               {errors.streetHouseNo && <div className="input-error">{errors.streetHouseNo?.message}</div>}
             </label>
-            <input {...register("streetHouseNo", required)} placeholder="Enter Street, House No." />
-
+            <input
+              {...register("streetHouseNo", required)}
+              placeholder="Enter Street, House No."
+            />
           </div>
           <div>
             <label htmlFor="city">City
               {errors.city && <div className="input-error">{errors.city?.message}</div>}
             </label>
-            <input {...register("city", required)} placeholder="Enter City" />
+            <input
+              {...register("city", required)}
+              placeholder="Enter City"
+            />
           </div>
           <div>
             <label>Country
@@ -68,7 +82,6 @@ const Shipping = () => {
             <Controller
               name="country"
               control={control}
-              defaultValue=""
               rules={required}
               render={({ field: { onChange, value } }) => (
                 <Select options={[

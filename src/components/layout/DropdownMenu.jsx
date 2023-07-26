@@ -9,8 +9,8 @@ import axios from "axios";
 const DropdownMenu = ({ handleNavOpen }) => {
   const [navLinks, setNavLinks] = useState([])
   const [showMenu, setshowMenu] = useState(false)
-  const navigate = useNavigate()
   const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
+  const navigate = useNavigate()
 
   const handleLoginButton = () => {
     handleNavOpen()
