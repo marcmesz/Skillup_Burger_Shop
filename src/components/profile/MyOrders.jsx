@@ -1,5 +1,6 @@
 import "../../styles/table.scss";
 import "../../styles/cart.scss";
+import "../../styles/myOrders.scss";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
@@ -25,7 +26,7 @@ const MyOrders = () => {
   const userState = useSelector(state => state.user)
   const user = userState.users.find(user => user.email === userState.isAuthenticated.email)
   const orderCompleted = userState.process.type === "order_completed"
-  const orders = user.orders
+  const orders = [...user.orders].sort((a, b) => new Date(b.orderCompleted) - new Date(a.orderCompleted))
 
   useEffect(() => {
     if (orderCompleted) {
