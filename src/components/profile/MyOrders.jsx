@@ -21,14 +21,12 @@ import {
 } from 'mdb-react-ui-kit';
 
 const MyOrders = () => {
-  const [hide, setHide] = useState(false)
   const [message, setMessage] = useState(false)
   const dispatch = useDispatch()
   const userState = useSelector(state => state.user)
   const user = userState.users.find(user => user.email === userState.isAuthenticated.email)
   const orderCompleted = userState.process.type === "order_completed"
   const orders = [...user.orders].sort((a, b) => new Date(b.orderCompleted) - new Date(a.orderCompleted))
-  const hideColumns = { display: hide ? "none" : "table-cell" }
 
   useEffect(() => {
     if (orderCompleted) {
@@ -38,16 +36,6 @@ const MyOrders = () => {
       dispatch(userActions.handleProcess())
       dispatch(cartActions.setCartEmpty())
     }
-
-    const handleResize = () => {
-      window.innerWidth < 650 && !hide && setHide(true)
-      window.innerWidth > 651 && !hide && setHide(false)
-    }
-
-    handleResize()
-
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
   }, [orderCompleted, user, dispatch])
 
   return (
@@ -59,10 +47,10 @@ const MyOrders = () => {
             <thead>
               <tr>
                 <th>Order Id</th>
-                <th style={hideColumns}>Status</th>
-                <th style={hideColumns}>Item Qty</th>
+                <th className="d-none d-sm-table-cell d-sm-none d-md-block">Status</th>
+                <th className="d-none d-sm-table-cell">Item Qty</th>
                 <th>Amount</th>
-                <th style={hideColumns}>Payment Method</th>
+                <th className="d-none d-sm-table-cell">Payment Method</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -71,10 +59,10 @@ const MyOrders = () => {
               {orders.length > 0 ? orders.map((order) => (
                 <tr key={order.orderId}>
                   <td>#{order.orderId}</td>
-                  <td style={hideColumns}>{order.orderCompleted ? "Completed" : "Processing"}</td>
-                  <td style={hideColumns}>{order.totalItems}</td>
+                  <td className="d-none d-sm-table-cell d-sm-none d-md-block">{order.orderCompleted ? "Completed" : "Processing"}</td>
+                  <td className="d-none d-sm-table-cell">{order.totalItems}</td>
                   <td>₹{order.totalAmount}</td>
-                  <td style={hideColumns}>COD</td>
+                  <td className="d-none d-sm-table-cell">COD</td>
                   <td>
                     <Link to={`/order/${order.orderId}`}>
                       <AiOutlineEye style={{ fontSize: "1.5em" }} />
