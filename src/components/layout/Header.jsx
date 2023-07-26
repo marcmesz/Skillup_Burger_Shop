@@ -17,7 +17,7 @@ const Header = () => {
 
     const handleNavOpen = (e) => {
         window.innerWidth <= 890 && menuRef.current.classList.toggle("open")
-        e?.target?.id && setActive(e.target.id)
+        e?.target?.id ? setActive(e.target.id) : setActive("")
         e !== "noScroll" && scrollToTop()
     }
 
