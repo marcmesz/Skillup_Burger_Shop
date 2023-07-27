@@ -59,7 +59,6 @@ const Shipping = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="streetHouseNo">Street, H. No.
-              {errors.streetHouseNo && <div className="input-error">{errors.streetHouseNo?.message}</div>}
             </label>
             <input
               {...register("streetHouseNo", required)}
@@ -68,10 +67,10 @@ const Shipping = () => {
               id="streetHouseNo"
               autoComplete="add"
             />
+            {errors.streetHouseNo && <div className="input-error">{errors.streetHouseNo?.message}</div>}
           </div>
           <div>
             <label htmlFor="city">City
-              {errors.city && <div className="input-error">{errors.city?.message}</div>}
             </label>
             <input
               {...register("city", required)}
@@ -79,10 +78,10 @@ const Shipping = () => {
               name="city"
               id="city"
             />
+            {errors.city && <div className="input-error">{errors.city?.message}</div>}
           </div>
           <div>
             <label htmlFor="country">Country
-              {errors.country && <div className="input-error">{errors.country?.message}</div>}
             </label>
             <Controller
               id="country"
@@ -133,9 +132,7 @@ const Shipping = () => {
             />
           </div>
           <div>
-            <label htmlFor="pincode">Pin Code
-              {errors.pincode && <div className="input-error">{errors.pincode?.message}</div>}
-            </label>
+            <label htmlFor="pincode">Pin Code</label>
             <input
               {...register("pincode", required)}
               type="number"
@@ -143,10 +140,10 @@ const Shipping = () => {
               name="pincode"
               id="pincode"
             />
+            {errors.pincode && <div className="input-error">{errors.pincode?.message}</div>}
           </div>
           <div>
             <label htmlFor="phone">Phone No.
-              {errors.phone && <div className="input-error">{errors.phone?.message}</div>}
             </label>
             <input
               {...register("phone", required)}
@@ -155,6 +152,7 @@ const Shipping = () => {
               name="phone"
               id="phone"
             />
+            {errors.phone && <div className="input-error">{errors.phone?.message}</div>}
           </div>
           <button type="submit" className="link mt-5" style={{ border: "none" }} onClick={() => setCheckError(true)}>
             Confirm Address

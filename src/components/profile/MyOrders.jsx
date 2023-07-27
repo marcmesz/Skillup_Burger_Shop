@@ -93,9 +93,9 @@ const MyOrders = () => {
                 <MDBModalTitle>Order completed <AiOutlineCheck style={{ color: "green" }} /></MDBModalTitle>
               </MDBModalHeader>
               <MDBModalBody className="py-5 text-center">
-                <h4 className="mt-2">Thank you for your order!</h4>
+                <h4 className="mt-1 thank-you">Thank you for your order!</h4>
                 <p className="mt-4">Your order will be shipped soon.</p>
-                <p>You can see the details of your order by clicking the <AiOutlineEye style={{ color: "red" }} /> icon.</p>
+                <p className="mb-0">You can see the details of your order by clicking the <AiOutlineEye /> icon.</p>
               </MDBModalBody>
               <MDBModalFooter>
                 <MDBBtn onClick={() => setMessage(false)}>OK</MDBBtn>

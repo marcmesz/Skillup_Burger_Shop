@@ -1,5 +1,29 @@
-.tableClass{
-    tr:nth-child(even){
+@import "colors";
+@import "sizes";
+
+.tableClass {
+    tr:nth-child(even) {
         background-color: #eee;
+    }
+}
+
+.modal-body {
+    .thank-you {
+        color: $red;
+    }
+
+    svg {
+        margin-top: 0;
+        font-size: 1.5em;
+        color: $red;
+    }
+}
+
+
+@media screen and (max-width: $mobile) {
+    .modal-body {
+        svg {
+            font-size: 1.3em;
+        }
     }
 }
