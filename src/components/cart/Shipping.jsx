@@ -64,6 +64,9 @@ const Shipping = () => {
             <input
               {...register("streetHouseNo", required)}
               placeholder="Enter Street, House No."
+              name="streetHouseNo"
+              id="streetHouseNo"
+              autoComplete="add"
             />
           </div>
           <div>
@@ -73,13 +76,16 @@ const Shipping = () => {
             <input
               {...register("city", required)}
               placeholder="Enter City"
+              name="city"
+              id="city"
             />
           </div>
           <div>
-            <label>Country
+            <label htmlFor="country">Country
               {errors.country && <div className="input-error">{errors.country?.message}</div>}
             </label>
             <Controller
+              id="country"
               name="country"
               control={control}
               rules={required}
@@ -104,8 +110,9 @@ const Shipping = () => {
             />
           </div>
           <div>
-            <label>State</label>
+            <label htmlFor="state">State</label>
             <Controller
+              id="state"
               name="state"
               control={control}
               defaultValue=""
@@ -129,13 +136,25 @@ const Shipping = () => {
             <label htmlFor="pincode">Pin Code
               {errors.pincode && <div className="input-error">{errors.pincode?.message}</div>}
             </label>
-            <input {...register("pincode", required)} type="number" placeholder="Enter Pincode" />
+            <input
+              {...register("pincode", required)}
+              type="number"
+              placeholder="Enter Pincode"
+              name="pincode"
+              id="pincode"
+            />
           </div>
           <div>
             <label htmlFor="phone">Phone No.
               {errors.phone && <div className="input-error">{errors.phone?.message}</div>}
             </label>
-            <input {...register("phone", required)} type="number" placeholder="Enter Phone No." />
+            <input
+              {...register("phone", required)}
+              type="number"
+              placeholder="Enter Phone No."
+              name="phone"
+              id="phone"
+            />
           </div>
           <button type="submit" className="link mt-5" style={{ border: "none" }} onClick={() => setCheckError(true)}>
             Confirm Address

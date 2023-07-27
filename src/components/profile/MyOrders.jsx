@@ -47,8 +47,8 @@ const MyOrders = () => {
             <thead>
               <tr>
                 <th>Order Id</th>
-                <th className="d-none d-sm-table-cell d-sm-none d-md-block">Status</th>
-                <th className="d-none d-sm-table-cell">Item Qty</th>
+                <th className="d-none d-sm-table-cell">Status</th>
+                <th className="d-none d-sm-table-cell d-sm-none d-md-block">Item Qty</th>
                 <th>Amount</th>
                 <th className="d-none d-sm-table-cell">Payment Method</th>
                 <th>Action</th>
@@ -59,8 +59,8 @@ const MyOrders = () => {
               {orders.length > 0 ? orders.map((order) => (
                 <tr key={order.orderId}>
                   <td>#{order.orderId}</td>
-                  <td className="d-none d-sm-table-cell d-sm-none d-md-block">{order.orderCompleted ? "Completed" : "Processing"}</td>
-                  <td className="d-none d-sm-table-cell">{order.totalItems}</td>
+                  <td className="d-none d-sm-table-cell">{order.orderCompleted ? "Completed" : "Processing"}</td>
+                  <td className="d-none d-sm-table-cell d-sm-none d-md-block">{order.totalItems}</td>
                   <td>₹{order.totalAmount}</td>
                   <td className="d-none d-sm-table-cell">COD</td>
                   <td>

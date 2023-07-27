@@ -61,6 +61,7 @@ const RegisterForm = ({ justifyActive }) => {
                         })}
                         id="name"
                         type="text"
+                        autoComplete="name"
                         required
                     />
                 </MDBValidationItem>
