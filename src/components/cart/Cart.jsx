@@ -44,10 +44,11 @@ const Cart = ({ confirmOrder }) => {
       <h1 className="page-title">{confirmOrder ? "Confirm order" : "Cart"}</h1>
       <main>
         {confirmOrder && currentOrder && <ShippingDetails currentOrder={currentOrder} />}
-        {!cartEmpty && orderedItems.map(order => {
+        {!cartEmpty && orderedItems.map((order, index) => {
           return (
             <CartItem
               key={order.id}
+              name={"item-" + index}
               title={order.title}
               img={order.burgerSrc}
               value={order.amount}

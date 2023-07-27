@@ -35,6 +35,7 @@ const Profile = () => {
 
   return (
     <section className="profile">
+      <h1 className="page-title">My Profile</h1>
       <main>
         <motion.img src={me} alt="User" {...options} />
         <motion.h5 {...options} transition={{ delay: 0.3 }}>

@@ -1,4 +1,4 @@
-const CartItem = ({ value, price, title, img, increment, decrement, confirmOrder }) => {
+const CartItem = ({ value, price, title, img, name, increment, decrement, confirmOrder }) => {
     return (
         <div className="cartItem">
             <div>
@@ -10,7 +10,7 @@ const CartItem = ({ value, price, title, img, increment, decrement, confirmOrder
                     !confirmOrder ?
                         <>
                             <button onClick={decrement}>-</button>
-                            <input type="number" readOnly value={value} />
+                            <input name={name} type="number" readOnly value={value} />
                             <button onClick={increment}>+</button>
                         </>
                         :

@@ -107,6 +107,7 @@ const Contact = () => {
                                 rules={{ required: "We cannot send an empty message." }}
                                 render={({ field }) => <MDBTextArea
                                     {...field}
+                                    id="message"
                                     ref={null}
                                     name="message"
                                     label="Message"
