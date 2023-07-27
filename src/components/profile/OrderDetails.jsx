@@ -8,7 +8,7 @@ const OrderDetails = () => {
     const users = useSelector(state => state.user.users)
     const userEmail = useSelector(state => state.user.isAuthenticated.email)
     const user = users.find(user => user.email === userEmail)
-    const orderId = pathname.split("/").at(-1)
+    const orderId = pathname.split("/")[pathname.split("/").length - 1]
     const currentOrder = user.orders.find(order => order.orderId === orderId)
     const shippingAddress = `${user.address.streetHouseNo}, ${user.address.city}, ${user.address.state.label} ${user.address.pincode}, ${user.address.country.label}`
     const orderDate = new Date(currentOrder.orderCompleted).toLocaleString()

@@ -67,8 +67,9 @@
 
     >h4 {
       font-weight: 200;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin-bottom: 0;
+      min-width: fit-content;
     }
 
     >img {

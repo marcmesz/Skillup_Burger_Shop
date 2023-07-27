@@ -5,12 +5,12 @@ const SocialLogin = ({ type }) => {
         <div className="text-center mb-3">
             <p>Sign {type} with:</p>
             <div
-                className="d-flex justify-content-center gap-3 mx-auto"
+                className="d-flex justify-content-center mx-auto"
             >
                 <MDBBtn
                     tag="a"
                     color="none"
-                    className="btn btn-secondary btn-floating btn-social"
+                    className="btn btn-secondary btn-floating btn-social mx-2"
                     style={{ color: "#1266f1" }}
                 >
                     <MDBIcon fab icon="facebook-f" size="lg" />
@@ -18,7 +18,7 @@ const SocialLogin = ({ type }) => {
                 <MDBBtn
                     tag="a"
                     color="none"
-                    className="btn btn-secondary btn-floating btn-social"
+                    className="btn btn-secondary btn-floating btn-social mx-2"
                     style={{ color: "#1266f1" }}
                 >
                     <MDBIcon fab icon="twitter" size="lg" />
@@ -26,7 +26,7 @@ const SocialLogin = ({ type }) => {
                 <MDBBtn
                     tag="a"
                     color="none"
-                    className="btn btn-secondary btn-floating btn-social"
+                    className="btn btn-secondary btn-floating btn-social mx-2"
                     style={{ color: "#1266f1" }}
                 >
                     <MDBIcon fab icon="google" size="lg" />
@@ -34,7 +34,7 @@ const SocialLogin = ({ type }) => {
                 <MDBBtn
                     tag="a"
                     color="none"
-                    className="btn btn-secondary btn-floating btn-social"
+                    className="btn btn-secondary btn-floating btn-social mx-2"
                     style={{ color: "#1266f1" }}
                 >
                     <MDBIcon fab icon="github" size="lg" />

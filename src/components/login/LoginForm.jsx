@@ -19,7 +19,6 @@ const LoginForm = ({ justifyActive, handleJustifyClick }) => {
     const checkout = state.process.checkout
 
     const onSubmit = (data) => {
-        /* data.rememberMe needs to implement */
         !checkout && dispatch(userActions.handleProcess())
         const findUser = state.users.find(user => user.email === data.emailLogin)
 
@@ -96,8 +95,9 @@ const LoginForm = ({ justifyActive, handleJustifyClick }) => {
                 </MDBValidationItem>
                 <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
             </MDBValidation>
-            <p className="text-center d-flex justify-content-center gap-2 not-a-member">
-                Not a member? <MDBTabsLink
+            <p className="text-center d-flex justify-content-center not-a-member">
+                <span className="mx-2">Not a member?</span>
+                <MDBTabsLink
                     onClick={() => handleJustifyClick("tab2")}
                     active={justifyActive === "tab2"}
                 >
