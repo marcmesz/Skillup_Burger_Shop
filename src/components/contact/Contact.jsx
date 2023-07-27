@@ -160,7 +160,7 @@ const Contact = () => {
                     <MDBModalDialog className="w-75">
                         <MDBModalContent>
                             <MDBModalBody className="text-center">
-                                <GrSend />
+                                <GrSend className="message-sent-icon" />
                                 <h4 className="mt-4">Your message has been sent.</h4>
                                 <p className="mt-4">Thank you for contacting us!</p>
                                 <p>We will get back to you shortly on the given address:</p>
