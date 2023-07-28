@@ -1,14 +1,19 @@
 import "../../styles/DropdownMenu.scss";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
 import axios from "axios";
+import {
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem
+} from 'mdb-react-ui-kit';
 
 const DropdownMenu = ({ handleNavOpen }) => {
   const [navLinks, setNavLinks] = useState([])
-  const [showMenu, setshowMenu] = useState(false)
   const loggedIn = useSelector(state => state.user.isAuthenticated.isAuth)
   const navigate = useNavigate()
 
@@ -17,9 +22,9 @@ const DropdownMenu = ({ handleNavOpen }) => {
     navigate("/login")
   }
 
-  const handleDropdownItems = () => {
+  const handleDropdownItems = (link) => {
     handleNavOpen()
-    setshowMenu(false)
+    navigate(link)
   }
 
   useEffect(() => {
@@ -36,30 +41,33 @@ const DropdownMenu = ({ handleNavOpen }) => {
             {
               loggedIn ?
                 <>
-                  <button
-                    id="dropdown-toggle"
-                    type="button"
-                    className="btn btn-lg dropdown-toggle d-flex align-items-center g-20"
-                    onClick={() => setshowMenu(prev => !prev)}
-                  >
-                    <FaUser />
-                    <span className="ms-1">My Account</span>
-                  </button>
-                  <ul className={showMenu ? "dropdown-menu dropdown-menu-end show" : "dropdown-menu dropdown-menu-end"}>
-                    {navLinks.map((d, i) => (
-                      <li key={i}>
-                        <Link to={d.path} onClick={handleDropdownItems}>
-                          <button className="dropdown-item" type="button">
-                            {d.name}
-                          </button>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <MDBDropdown>
+                    <MDBDropdownToggle
+                      id="dropdown-toggle"
+                      className="btn btn-lg"
+                    >
+                      <FaUser /> My Account
+                    </MDBDropdownToggle>
+                    <MDBDropdownMenu>
+                      {navLinks.map((d, i) => (
+                        <MDBDropdownItem
+                          key={i}
+                          link
+                          onClick={() => handleDropdownItems(d.path)}
+                          childTag='button'
+                        >
+                          {d.name}
+                        </MDBDropdownItem>
+                      ))}
+                    </MDBDropdownMenu>
+                  </MDBDropdown>
                 </>
                 :
                 <>
-                  <button className="btn-lg btn-login d-flex align-items-center" onClick={handleLoginButton}>
+                  <button
+                    className="btn-lg btn-login d-flex align-items-center"
+                    onClick={handleLoginButton}
+                  >
                     <span className="ms-1">Sign in</span>
                     <FiLogIn />
                   </button>
