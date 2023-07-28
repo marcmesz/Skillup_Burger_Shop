@@ -56,7 +56,7 @@ const Shipping = () => {
     <section className="shipping">
       <h1 className="page-title">Shipping Details</h1>
       <main>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} id="shippingForm">
           <div>
             <label htmlFor="streetHouseNo">Street, H. No.
             </label>

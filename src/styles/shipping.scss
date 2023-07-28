@@ -47,18 +47,20 @@
           margin: 1rem;
           font-size: 1rem;
         }
-
-        .custom-select {
-          padding: 0;
-          border: 0;
-
-          div[class*='-placeholder'],
-          div[class*='-singleValue'] {
-            margin-left: .5em !important;
-          }
-        }
       }
 
+    }
+  }
+}
+
+#shippingForm {
+  .custom-select {
+    padding: 0;
+    border: 0;
+
+    div[class*='-placeholder'],
+    div[class*='-singleValue'] {
+      margin-left: .5em !important;
     }
   }
 }
@@ -112,12 +114,12 @@
     font-size: 2rem !important;
   }
 
-  form input,
-  form div {
+  #shippingForm input,
+  #shippingForm div {
     max-width: 100%;
   }
 
-  form>div {
+  #shippingForm>div {
     flex-direction: column;
     align-items: flex-start !important;
 
@@ -128,8 +130,8 @@
     }
   }
 
-  form div input,
-  .custom-select {
+  #shippingForm div input,
+  #shippingForm .custom-select {
     width: 100% !important;
     margin-top: 0 !important;
   }
