@@ -78,11 +78,10 @@
 
     >input {
       text-align: center;
-      width: 3rem;
-      height: 2rem;
+      width: 2.8rem;
       padding: 0.5rem;
       border: none;
-      margin: 0.25rem;
+      margin: 0 0.25rem;
       outline: none;
       border-radius: 5px;
       color: $red;
@@ -144,8 +143,6 @@
 
   .cartItem {
     &__title {
-
-
       h4 {
         font-size: 1.2em;
       }
@@ -154,8 +151,32 @@
 }
 
 @media screen and (max-width: 500px) {
-  .cartItem {
+  .confirm-order {
     flex-direction: column;
+
+    .cartItem__title {
+      width: 100%;
+      justify-content: space-between;
+
+      h4 {
+        font-size: 1em;
+      }
+    }
+  }
+
+  .cart-item-add {
+    .cartItem__title {
+      flex-direction: column;
+
+      h4 {
+        font-size: 1em;
+      }
+
+      img {
+        height: 40px;
+        align-self: flex-start;
+      }
+    }
   }
 
   .price {
