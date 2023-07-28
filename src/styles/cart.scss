@@ -103,6 +103,10 @@
       border-radius: 5px;
       min-width: 2em;
     }
+
+    .price {
+      min-width: max-content;
+    }
   }
 }
 
@@ -138,12 +142,22 @@
 
   .cartItem {
     &__title {
-      
+
 
       h4 {
         font-size: 1.2em;
       }
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cartItem {
+    flex-direction: column;
+  }
+
+  .price{
+    margin-top: .5em;
   }
 }
 

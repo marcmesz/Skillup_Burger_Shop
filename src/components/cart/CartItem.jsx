@@ -14,7 +14,7 @@ const CartItem = ({ value, price, title, img, name, increment, decrement, confir
                             <button onClick={increment}>+</button>
                         </>
                         :
-                        <div className="fs-5">{value} x ₹{price}</div>
+                        <div className="price fs-5">{value} x ₹{price}</div>
                 }
             </div>
         </div>
