@@ -104,10 +104,12 @@
       min-width: 2em;
     }
 
-    .price {
-      min-width: max-content;
-    }
+
   }
+}
+
+.price {
+  min-width: max-content;
 }
 
 .cart-empty {
@@ -156,7 +158,7 @@
     flex-direction: column;
   }
 
-  .price{
+  .price {
     margin-top: .5em;
   }
 }

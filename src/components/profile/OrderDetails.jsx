@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import "../../styles/orderDetails.scss";
+import "../../styles/cart.scss";
 import React from "react";
 import { useLocation } from "react-router-dom";
 
@@ -87,8 +88,8 @@ const OrderDetails = () => {
                                 {currentOrder.items.map((item, index) => (
                                     <div key={index}>
                                         <h4>{item.title}</h4>
-                                        <div>
-                                            <span>{item.amount}</span> x <span>₹{item.price}</span>
+                                        <div className="price">
+                                            {item.amount} x ₹{item.price}
                                         </div>
                                     </div>
                                 ))}
