@@ -4,7 +4,7 @@ import "../../styles/myOrders.scss";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
-import { AiOutlineCheck } from "react-icons/ai";
+import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 import { cartActions } from "../../store/cartSlice";
@@ -90,7 +90,7 @@ const MyOrders = () => {
           <MDBModalDialog className="w-75">
             <MDBModalContent>
               <MDBModalHeader>
-                <MDBModalTitle>Order completed <AiOutlineCheck style={{ color: "green" }} /></MDBModalTitle>
+                <MDBModalTitle>Order completed <BsFillCheckCircleFill style={{ color: "green" }} /></MDBModalTitle>
               </MDBModalHeader>
               <MDBModalBody className="py-5 text-center">
                 <h4 className="mt-1 thank-you">Thank you for your order!</h4>
