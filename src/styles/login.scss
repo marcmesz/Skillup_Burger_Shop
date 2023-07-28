@@ -11,6 +11,28 @@
         min-width: fit-content;
     }
 
+    ul .active {
+        background-color: $pink !important;
+        color: $red !important;
+    }
+
+    .tab-pane a {
+        color: $red;
+    }
+
+    .tab-pane i {
+        background-color: $pink;
+        color: $red;
+    }
+
+    .form-check-input[type=checkbox]:checked,
+    .form-check-input[type=checkbox]:checked:focus {
+        background-color: $red;
+        border-color: $reddark;
+    }
+
+    
+
 }
 
 .not-a-member {

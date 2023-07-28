@@ -16,13 +16,17 @@
   justify-content: center;
   transform: translate(-50%, -420%);
   font-size: 1.2em;
-  color: $white;
-  background-color: $red;
+  color: $red;
+  background-color: $pink;
   padding: 1em 1.2em;
   border-radius: 5px;
-  border: 3px solid $white;
+  border: 3px solid $red;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   animation: anvil;
+
+  svg {
+    color: green;
+  }
 }
 
 /* animation */
