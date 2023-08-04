@@ -18,7 +18,7 @@ const About = () => {
                     </p>
                     <p>
                         Explore the various type of food and burgers. Click below to see the
-                        menu
+                        menu.
                     </p>
                     <Link to="/#menu">
                         <RiFindReplaceLine />
