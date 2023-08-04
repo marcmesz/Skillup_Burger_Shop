@@ -40,8 +40,13 @@
         width: 80%;
         margin-bottom: .9em;
 
-        input {
-          padding: .5em !important;
+        input, textarea {
+          padding-top: .5em !important;
+          padding-bottom: .5em !important;
+        }
+
+        .form-label {
+          padding-top: .5em !important;
         }
       }
 

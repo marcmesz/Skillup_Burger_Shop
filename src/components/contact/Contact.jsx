@@ -111,8 +111,7 @@ const Contact = () => {
                                     ref={null}
                                     name="message"
                                     label="Message"
-                                    cols="30"
-                                    rows="10"
+                                    rows="9"
                                     required
                                 />
                                 }

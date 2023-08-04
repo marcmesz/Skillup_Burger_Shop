@@ -27,7 +27,7 @@ const About = () => {
                 <div>
                     <h2>Founder</h2>
                     <article>
-                        <div>
+                        <div className="d-flex flex-column align-items-center">
                             <img src={me} alt="Founder" />
                             <h3>Nelson</h3>
                         </div>
