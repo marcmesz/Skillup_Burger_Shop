@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../../store/userSlice";
 import { useLocation } from "react-router-dom";
+import { scrollToTop } from "../../functions/scrollToTop"
 
 const Login = () => {
     const [justifyActive, setJustifyActive] = useState("tab1")
@@ -31,7 +32,7 @@ const Login = () => {
             dispatch(userActions.handleProcess({ type: "finished" }))
             navigate("/registration-successful")
         }
-
+        scrollToTop()
     }, [process.type, navigate, dispatch, location])
 
     return (

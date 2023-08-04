@@ -18,7 +18,7 @@ const DropdownMenu = ({ handleNavOpen }) => {
   const navigate = useNavigate()
 
   const handleLoginButton = () => {
-    handleNavOpen()
+    handleNavOpen("noScroll")
     navigate("/login")
   }
 
