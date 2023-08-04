@@ -22,14 +22,14 @@ const OrderDetails = () => {
                     currentOrder ?
                         <>
                             <div>
-                                <h1>Shipping</h1>
+                                <h4>Shipping</h4>
                                 <p>
                                     <strong>Address: </strong>
                                     {shippingAddress}
                                 </p>
                             </div>
                             <div>
-                                <h1>Contact</h1>
+                                <h4>Contact</h4>
                                 <p>
                                     <strong>Name: </strong>
                                     {user.name}
@@ -40,7 +40,7 @@ const OrderDetails = () => {
                                 </p>
                             </div>
                             <div>
-                                <h1>Status</h1>
+                                <h4>Status</h4>
                                 <p>
                                     <strong>Order Status: </strong>
                                     {currentOrder.orderCompleted ? "Completed" : "Processing"}
@@ -55,7 +55,7 @@ const OrderDetails = () => {
                                 </p>
                             </div>
                             <div>
-                                <h1>Payment</h1>
+                                <h4>Payment</h4>
                                 <p>
                                     <strong>Payment Method: </strong>
                                     {"COD"}
@@ -69,7 +69,7 @@ const OrderDetails = () => {
                                 </p>
                             </div>
                             <div>
-                                <h1>Amount</h1>
+                                <h4>Amount</h4>
                                 <p>
                                     <strong>Items Total: </strong> ₹{currentOrder.subTotal}
                                 </p>
@@ -84,7 +84,7 @@ const OrderDetails = () => {
                                 </p>
                             </div>
                             <article>
-                                <h1>Ordered Items</h1>
+                                <h2>Ordered Items</h2>
                                 {currentOrder.items.map((item, index) => (
                                     <div key={index}>
                                         <h4>{item.title}</h4>

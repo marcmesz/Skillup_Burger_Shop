@@ -10,11 +10,41 @@ h4.detail-title {
     border-bottom: 1px solid $red;
 }
 
-h6 {
-    margin: .3em 0 !important;
+.shipping-data {
+    text-align: right;
 }
 
-.shipping-address {
-    max-width: 25em;
-    text-align: right;
+.shipping-details {
+    h6 {
+        margin: 0 !important;
+    }
+
+    >div {
+        align-items: center !important;
+        padding: .3em 0 !important;
+    }
+
+    .email {
+        word-break: break-all;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .shipping-details {
+        padding: 0 !important;
+
+        >div {
+            flex-direction: column;
+            margin-bottom: .5em !important;
+
+            h6 {
+                align-self: center !important;
+            }
+
+            .shipping-data {
+                text-align: center;
+                max-width: unset;
+            }
+        }
+    }
 }
