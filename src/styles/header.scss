@@ -158,3 +158,9 @@ nav {
     display: none;
   }
 }
+
+@media screen and (max-width: 360px) {
+  .logo-container {
+    transform: translateX(-40px) translateZ(0px) !important;
+  }
+}

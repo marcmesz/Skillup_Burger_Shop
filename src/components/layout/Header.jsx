@@ -2,12 +2,12 @@ import "../../styles/header.scss";
 import React, { useRef } from "react";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
-import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DropdownMenu from './DropdownMenu';
 import { useState } from "react";
 import CartMenuItem from "./CartMenuItem";
 import { scrollToTop } from "../../functions/scrollToTop";
+import MobileMenuIcon from "./MobileMenuIcon";
 
 const Header = () => {
     const menuRef = useRef()
@@ -24,7 +24,7 @@ const Header = () => {
     return (
         <div className="sticky-top bg-white shadow">
             <nav className="container-xxl" ref={menuRef}>
-                <motion.div initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
+                <motion.div className="logo-container" initial={{ x: "-100%" }} whileInView={{ x: 0 }}>
                     <Link to="/" id="logo-with-text" onClick={() => scrollToTop()}>
                         <IoFastFoodOutline />
                         <div className="logo-text">
@@ -33,7 +33,7 @@ const Header = () => {
                         </div>
                     </Link>
                 </motion.div>
-                <FaHamburger className="mobile-icon" onClick={() => handleNavOpen("noScroll")} />
+                <MobileMenuIcon handleNavOpen={handleNavOpen} />
                 <div className="menu-items">
                     <Link
                         id="home"
