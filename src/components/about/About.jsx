@@ -1,6 +1,6 @@
 import "../../styles/pagecontent.scss";
 import React from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 import { RiFindReplaceLine } from "react-icons/ri";
 import me from "../../assets/skj.jpg";
 
@@ -20,7 +20,7 @@ const About = () => {
                         Explore the various type of food and burgers. Click below to see the
                         menu
                     </p>
-                    <Link to="/">
+                    <Link to="/#menu">
                         <RiFindReplaceLine />
                     </Link>
                 </article>

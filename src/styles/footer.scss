@@ -7,6 +7,10 @@ footer {
   padding: 5rem;
   padding-bottom: 0;
 
+  .copy-text p {
+    color: $red;
+  }
+
   h2 {
     color: $red;
     font-weight: bold;
@@ -61,6 +65,5 @@ footer {
       align-items: center;
       text-align: center;
     }
-
   }
 }
