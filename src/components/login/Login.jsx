@@ -24,6 +24,7 @@ const Login = () => {
     }
 
     useEffect(() => {
+        scrollToTop()
         if (location.pathname === "/logout") {
             dispatch(userActions.logoutUser())
             navigate("/login")
@@ -32,7 +33,6 @@ const Login = () => {
             dispatch(userActions.handleProcess({ type: "finished" }))
             navigate("/registration-successful")
         }
-        scrollToTop()
     }, [process.type, navigate, dispatch, location])
 
     return (

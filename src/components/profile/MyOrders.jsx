@@ -29,9 +29,9 @@ const MyOrders = () => {
   const orders = [...user.orders].sort((a, b) => new Date(b.orderCompleted) - new Date(a.orderCompleted))
 
   useEffect(() => {
+    scrollToTop()
     if (orderCompleted) {
       setMessage(true)
-      scrollToTop()
       dispatch(userActions.setCurrentOrderEmpty())
       dispatch(userActions.handleProcess())
       dispatch(cartActions.setCartEmpty())

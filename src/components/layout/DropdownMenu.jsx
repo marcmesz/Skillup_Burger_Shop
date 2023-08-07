@@ -23,7 +23,7 @@ const DropdownMenu = ({ handleNavOpen }) => {
   }
 
   const handleDropdownItems = (link) => {
-    handleNavOpen()
+    handleNavOpen("noScroll")
     navigate(link)
   }
 
@@ -36,7 +36,7 @@ const DropdownMenu = ({ handleNavOpen }) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow-none">
-        <div className="container">
+        <div className="container" style={{ paddingRight: 0 }}>
           <div className="btn-group">
             {
               loggedIn ?

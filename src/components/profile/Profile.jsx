@@ -5,6 +5,7 @@ import me from "../../assets/skj.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
+import { scrollToTop } from "../../functions/scrollToTop"
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
+    scrollToTop()
     if (cartItems > 0 && checkout && process.type === "loggedIn") {
       dispatch(userActions.handleProcess())
       navigate("/cart")
