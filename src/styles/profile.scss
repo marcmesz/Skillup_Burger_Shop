@@ -5,10 +5,10 @@
   width: 100%;
   min-height: 100vh;
 
-  > main {
+  >main {
     max-width: 900px;
     min-height: 100vh;
-    background-color:$white;
+    background-color: $white;
     margin: auto;
     height: 100%;
     display: flex;
@@ -16,37 +16,44 @@
     align-items: center;
     padding: 4rem;
 
-    > img {
-      height: 15rem;
-      width: 15rem;
+    >img {
+      max-height: 15rem;
+      max-width: 15rem;
       border-radius: 100%;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.146);
-      margin: 4rem;
+      margin: 2rem;
+      width: 100%;
+      object-fit: contain;
     }
 
-    > h5 {
+    >h5 {
       font-size: 2rem;
+      text-align: center;
     }
-    > div {
+
+    >div {
       margin: 2rem;
-      > a {
+
+      >a {
         background-color: $red;
-        color:$white;
+        color: $white;
         padding: 0.7rem 1.5rem;
         font-size: 1rem;
         border-radius: 5px;
         display: flex;
         align-items: center;
+
         svg {
           margin-right: 0.5rem;
         }
+
         &:hover {
           background-color: $reddark;
         }
       }
     }
 
-    > button {
+    >button {
       border: none;
       outline: none;
       padding: 0.7rem 1.5rem;
@@ -54,6 +61,7 @@
       cursor: pointer;
       font-weight: 500;
       font-size: 1rem;
+
       &:hover {
         background-color: rgba(245, 245, 245, 0.864);
       }
