@@ -40,7 +40,8 @@
         width: 80%;
         margin-bottom: .9em;
 
-        input, textarea {
+        input,
+        textarea {
           padding-top: .5em !important;
           padding-bottom: .5em !important;
         }
@@ -98,11 +99,12 @@
 
 @media screen and (max-width: $mobile) {
   .contact {
-    height: 70vh;
+    height: 100%;
 
     >.motion-container {
       width: 100%;
       height: 100%;
+      padding-bottom: 2em;
 
       form>div,
       form>button {
