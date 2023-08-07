@@ -16,8 +16,8 @@ const Menu = () => {
 
     return (
         <div className="bg-white">
-            <h1 className="page-title">Menu</h1>
-            <section id="menu" className="container-xxl">
+            <h1 id="menu" className="page-title">Menu</h1>
+            <section id="menu-section" className="container-xxl">
                 <div className="menu-grid">
                     {menu.length > 0 && menu.map((burger, index) => {
                         const delay = ((index + 2) / 10 + (index / 3)).toFixed(1)

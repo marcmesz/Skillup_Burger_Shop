@@ -1,7 +1,7 @@
 @import "colors";
 @import "sizes";
 
-#menu {
+#menu-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,7 +79,7 @@
 }
 
 @media screen and (max-width: $mobile) {
-  #menu>div {
+  #menu-section>div {
     flex-direction: column;
   }
 
