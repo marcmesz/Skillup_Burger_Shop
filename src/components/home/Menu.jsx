@@ -16,7 +16,8 @@ const Menu = () => {
 
     return (
         <div className="bg-white">
-            <h1 id="menu" className="page-title">Menu</h1>
+            <h1 className="page-title">Menu</h1>
+            <div id="menu"></div>
             <section id="menu-section" className="container-xxl">
                 <div className="menu-grid">
                     {menu.length > 0 && menu.map((burger, index) => {
