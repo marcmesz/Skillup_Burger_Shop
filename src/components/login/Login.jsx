@@ -36,34 +36,37 @@ const Login = () => {
     }, [process.type, navigate, dispatch, location])
 
     return (
-        <MDBContainer className="p-3 my-5 login-container">
-            <MDBTabs
-                pills
-                justify
-                className="mb-3 d-flex flex-row justify-content-between"
-            >
-                <MDBTabsItem>
-                    <MDBTabsLink
-                        onClick={() => handleJustifyClick("tab1")}
-                        active={justifyActive === "tab1"}
-                    >
-                        Login
-                    </MDBTabsLink>
-                </MDBTabsItem>
-                <MDBTabsItem>
-                    <MDBTabsLink
-                        onClick={() => handleJustifyClick("tab2")}
-                        active={justifyActive === "tab2"}
-                    >
-                        Register
-                    </MDBTabsLink>
-                </MDBTabsItem>
-            </MDBTabs>
-            <MDBTabsContent>
-                <LoginForm justifyActive={justifyActive} handleJustifyClick={handleJustifyClick} />
-                <RegisterForm justifyActive={justifyActive} />
-            </MDBTabsContent>
-        </MDBContainer>
+        <>
+            <h1 className="page-title">Sign in</h1>
+            <MDBContainer className="p-3 my-5 login-container">
+                <MDBTabs
+                    pills
+                    justify
+                    className="mb-3 d-flex flex-row justify-content-between"
+                >
+                    <MDBTabsItem>
+                        <MDBTabsLink
+                            onClick={() => handleJustifyClick("tab1")}
+                            active={justifyActive === "tab1"}
+                        >
+                            Login
+                        </MDBTabsLink>
+                    </MDBTabsItem>
+                    <MDBTabsItem>
+                        <MDBTabsLink
+                            onClick={() => handleJustifyClick("tab2")}
+                            active={justifyActive === "tab2"}
+                        >
+                            Register
+                        </MDBTabsLink>
+                    </MDBTabsItem>
+                </MDBTabs>
+                <MDBTabsContent>
+                    <LoginForm justifyActive={justifyActive} handleJustifyClick={handleJustifyClick} />
+                    <RegisterForm justifyActive={justifyActive} />
+                </MDBTabsContent>
+            </MDBContainer>
+        </>
     )
 }
 export default Login
