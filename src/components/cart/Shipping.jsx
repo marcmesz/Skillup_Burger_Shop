@@ -28,7 +28,7 @@ const Shipping = () => {
 
   const onSubmit = (data) => {
     const userOrder = Object.assign({ ...order }, { orderId: uuid().split("-")[0] })
-    dispatch(userActions.addOrderToUser({ address: data, order: userOrder }))
+    !submitted && dispatch(userActions.addOrderToUser({ address: data, order: userOrder }))
     setSubmitted(true)
   }
 
