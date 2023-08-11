@@ -90,7 +90,7 @@ const LoginForm = ({ justifyActive, handleJustifyClick }) => {
                                 ref={null}
                             />}
                         />
-                        <a href="!#">Forgot password?</a>
+                        <a href="#">Forgot password?</a>
                     </div>
                 </MDBValidationItem>
                 <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
